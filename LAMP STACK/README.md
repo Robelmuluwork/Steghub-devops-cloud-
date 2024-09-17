@@ -200,4 +200,4 @@ If you're seeing this page in your browser, It means your PHP installation is wo
 `rm index.php`
 
 
-CONGRATULATIONS, you just finished your first REAL LIFE PROJECT by deploying a LAMP stack in the cloud.
+🎉🎉CONGRATULATIONS🎉✨🎉✨, you just finished your first REAL LIFE PROJECT by deploying a LAMP stack in the cloud.
