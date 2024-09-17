@@ -196,5 +196,8 @@ phpinfo();
 If you're seeing this page in your browser, It means your PHP installation is working as expected. 
 ![php result](https://github.com/user-attachments/assets/acb7e37d-d861-4857-a1ca-f5aa893981e9)
 7. For security reasons, remove index.php
+   
 `rm index.php`
+
+
 CONGRATULATIONS, you just finished your first REAL LIFE PROJECT by deploying a LAMP stack in the cloud.
