@@ -71,17 +71,15 @@ Here’s a step-by-step guide on how to set up a LAMP stack (Linux, Apache, MySQ
 
 1. Install Apache using Ubuntu's package manager 'apt'. 
 Run the following commands
-
 `sudo apt update`
-    I've already updated 
+I've already updated 
 
 ![image16](https://github.com/user-attachments/assets/df2ef293-9702-4aeb-8943-6f227444129d)
 
-
-
 `sudo apt install apache2`
 
-    ![image18](https://github.com/user-attachments/assets/369f6b2b-e2da-48f6-bc0a-74601631e2aa)
+ ![image18](https://github.com/user-attachments/assets/61ff6075-0cc3-4709-acdc-7f4f889bc97a)
+
 
 
 
@@ -90,16 +88,9 @@ Run the following commands
 `sudo systemctl status apache2`
          ![image17](https://github.com/user-attachments/assets/8a624b57-3305-43b9-8bb3-d08a1945d927)
 
-
-
-
-
-
 3. Now that your server is running, check it via http://(your-ec2-public-ip)
 
 ![image16](https://github.com/user-attachments/assets/8dbf0495-8f94-4e54-9f3b-9807138e86d9)
-
-
    
 Congrats! You've just launched your first web browser in the clouds.
     
@@ -109,48 +100,28 @@ Congrats! You've just launched your first web browser in the clouds.
 `sudo apt install mysql-server -y`
 
 ![image17](https://github.com/user-attachments/assets/71d58fc9-ca89-4b07-82cf-151d30db0e39)
-
-
-
-
 2. Secure MySQL installation:
 `sudo mysql` 
 ![image19](https://github.com/user-attachments/assets/5fd77ee4-d5d2-46f2-8ecb-dc692fc3a73a)
 
 3. It is recommended that you run a script that comes pre-installed with MySQL. This script will remove some insecure default and lockdown access to your database system.
 `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';`
-
 ![image20](https://github.com/user-attachments/assets/f362b008-6e08-4f3d-9fb5-bc052ec3b6c5)
-
-
-
-
-
 4. Exit the MySQL shell:
 `mysql> exit`
-
 ![image21](https://github.com/user-attachments/assets/eb3d80c3-3baa-4195-a7a0-778d388febe8)
-
-
-
-
 5. Start the interactive script:
 `sudo mysql_secure_installation`  
-
 6. You'll be prompted to change your default password to a password of your choice, remove anonymous users, disallow root logins etc. Answer y for yes or anything else to continue without enabling.
 
 7. Login into MySQL to ensure it works:
 `sudo mysql -p`
-    
-    Use your new password If you changed it to access MySQL server
-
+Use your new password If you changed it to access MySQL server
 8. Exit the MySQL console:
 `mysql> exit`            
 ## Step 5 - Install PHP
-
 1. Install PHP, PHP extensions for Apache and MySQL
 `sudo apt install php libapache2-mod-php php-mysql php-cli `
-
 ![image21](https://github.com/user-attachments/assets/fb53f06f-c540-4e74-b906-52ba49ff3474)
 
 
@@ -174,8 +145,6 @@ At this point, your L.A.M.P stack is fully installed and operational.
 3. Create a new config file
 `sudo nano /etc/apache2/sites-available/projectlamp.conf`
 ![image22](https://github.com/user-attachments/assets/4e32cdcb-0259-4fd7-a38e-087286ad4c7a)
-
-
 5. You can use the ls command to show the new file in the sites-available directory
 `sudo ls /etc/apache2/sites-available`
 6. Enable the new virtual host
@@ -184,13 +153,8 @@ At this point, your L.A.M.P stack is fully installed and operational.
 `sudo a2dissite 000-default`
 8. Confirm your config file has zero syntax error
 `sudo apache2ctl configtest`
-
-
-
 9. Reload Apache so these changes can take effect
 `sudo systemctl reload apache2`    
-
-
 Congrats! Your new website is now active, but the web root /var/www/projectlamp is still empty. You need to create an html file in that location so we can confirm that it works perfectly.
 ## Step 7 - Test the website with html scripts
 1. Create an index.html file Copy the following:
@@ -203,22 +167,11 @@ http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/inde
 ```
 5. To view the html code you just wrote:
 `cat index.html`
-
-
 7. Now you view your new web page via http://(your-ec2-public-ip)    
-
 ![image23](https://github.com/user-attachments/assets/5038dc3f-a8af-435a-aa8a-b4711f82c6ec)
-
-
-
-
-
-
 ## Step 8 - Enable PHP on the website
-
 1. Create a PHP test file to confirm that Apache is able to handle and process requests for PHP files
 `nano /var/www/projectlamp/index.php`
-
 2. Add the following php code to enable php on the website
 `sudo nano /etc/apache2/mods-enabled/dir.conf`
 ```
@@ -239,16 +192,9 @@ http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/inde
 phpinfo();
 ?>
 ```
-
 5. After completing this, refresh your http://(your-public-ip)/info.php
-
-
 If you're seeing this page in your browser, It means your PHP installation is working as expected. 
 ![php result](https://github.com/user-attachments/assets/acb7e37d-d861-4857-a1ca-f5aa893981e9)
-
-
 7. For security reasons, remove index.php
 `rm index.php`
-
-
 CONGRATULATIONS, you just finished your first REAL LIFE PROJECT by deploying a LAMP stack in the cloud.
