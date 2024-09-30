@@ -109,7 +109,13 @@ ssh -i "Private-key-name.pem" ubuntu@<Public IP address>
      console.log(`Server running on port ${port}`);
    });
    ```
+run 
+````js
+node index.js
+````
+ your EC2 <Public IP>:5000
 ![image](https://github.com/user-attachments/assets/e7feee7d-4d31-4845-b4ff-2ac8165f9e27)
+
 check if everything is working 
 
 ![image](https://github.com/user-attachments/assets/d34efc18-a40f-4755-a8ee-7b18562f12cf)
