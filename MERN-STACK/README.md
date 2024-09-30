@@ -125,9 +125,234 @@ check if everything is working
 ![image](https://github.com/user-attachments/assets/d34efc18-a40f-4755-a8ee-7b18562f12cf)
 
 6. **Install dotenv**  
-   To manage environment variables, install the `dotenv` module:
+   To manage environment variables, install the `dotenv` module(we are going to use it later):
    ```bash
    npm install dotenv
    ```
+   
+**Routing**
+There are 3 actions that oir TO_DO application needs
+    1.Create a new task
+    2.Display list of all tasks
+    3.Delete a completed task
+Each task will be associated with HTTP Requests
+for each task we need to create a route that will define endpoints so lets create a folder roudes
+````bash
+mkdir routes
+````
+change directory
+````bash
+cd routes
+touch api.js
+nano api.js
+````
+![image15](https://github.com/user-attachments/assets/2d7a36ed-c641-4581-a87e-a1420a0aa4b9)
+in the nano editor write this code👇 
+![image16](https://github.com/user-attachments/assets/7880f90e-6872-4f80-88a8-98bbdbab13eb)
+
+moving forward let create Models directory
+  Now comes the interesting part, since the app is going to make use of Mongodb which is a NoSQL database, we need to create a model.
+A model is at the heart of JavaScript based applications, and it is what makes it interactive.
+We will also use models to define the database schema. This is important so that we will be able to define the fields stored in each Mongodb document. (Seems like a lot of information, but not to worry, everything will become clear to you over time. I promise!!!)
+In essence, the Schema is a blueprint of how the database will be constructed, including other data fields that may not be required to be stored in the database. These are known as virtual properties
+To create a Schema and a model, install mongoose which is a Node.js package that makes working with mongodb easier.
+Change directory back Todo folder with cd and install Mongoose
+```` js
+npm install mongoose
+````
+create a new folder
+````bash
+mkdir models && touch todo.js
+you can run multiple script in one line
+````
+````bash
+nano todo.js
+````
+![image17](https://github.com/user-attachments/assets/8f4cd88f-9c01-4647-beb5-36089552c9cb)
+
+past this code
+````js
+const mongoose = require('mongoose');
+const Schema mongoose.Schema;
+//create schema for todo
+const TodoSchema= new Schema ((
+action: {
+type: String,
+required: [true, 'The todo text field is required']
+1)
+//create model for todo
+const Todo mongoose.model('todo', TodoSchema);
+module.exports = Todo;
+````
+![image18](https://github.com/user-attachments/assets/1659b78e-56e3-4887-92a9-603205670be4)
 
 
+now we need to update our routes
+
+````js
+const express = require ('express');
+const router express.Router();
+const Todo = require('../models/todo');
+router.get('/todos', (req, res, next) => {
+//this will return all the data, exposing only the id and action field to the client
+Todo.find({}, 'action')
+.then(data => res.json(data))
+.catch(next)
+});
+router.post('/todos', (req, res, next) > {
+if(req.body.action) {
+Todo.create(req.body)
+.then (data => res.json(data))
+.catch(next)
+Jelse {
+res.json({
+error: "The input field is empty"
+1)
+});
+router.delete('/todos/:id', (req, res, next) => {
+Todo.findOneAndDelete({"id": req.params.id))
+.then (data => res.json(data))
+.catch(next)
+})
+module.exports = router
+````
+next our application will be the MongoDB Database
+#MongoDB Database
+We need a database where we will store our data. For this we will make use of mLab. mLab provides MongoDB database as a service solution (DBaaS), so to make life easy, you will need to sign up for a shared clusters free account, which is ideal for our use case. Sign up [here](https://www.mongodb.com/products/try-free/platform/atlas-signup-from-mlab). Follow the sign up process, select AWS as the cloud provider, and choose a region near you.
+
+![image](https://github.com/user-attachments/assets/82e5178d-ab26-4f1a-a6e5-a4edbd5124c4)
+
+![image](https://github.com/user-attachments/assets/0a323765-6724-4b75-9c39-10cdcdb554ca)
+
+cocpy past your database connection string
+![image](https://github.com/user-attachments/assets/82f9dc36-61ce-4d99-b81c-107974f21ec8)
+don't forget to add your IP or access anywhere
+![image](https://github.com/user-attachments/assets/e232a140-451b-45f7-b0d2-bac8d4113c25)
+create a .env file in the root folder
+````bash
+mkdir .env
+past your Database connection string DB=`your DB connection`
+````
+after this update the index.js
+````bash     
+nano index.js
+````
+````js
+const express = require('express');
+const bodyParser = require('body-parser'); const mongoose = require('mongoose');
+const routes = require('./routes/api');
+const path = require('path'); require('dotenv').config();
+const app = express();
+const port process.env.PORT || 5000;
+//connect to the database
+mongoose.connect (process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true }) .then(() => console.log("Database connected successfully'))
+.catch(err => console.log(err));
+//since mongoose promise is depreciated, we overide it with node's promise
+mongoose. Promise = global. Promise;
+app.use((req, res, next) => [
+res.header("Access-Control-Allow-Origin", "\*");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+next();
+});
+app.use (bodyParser.json());
+app.use('/api', routes);
+app.use ((err, req, res, next) {
+console.log(err);
+next();
+});
+app.listen(port, () => {
+console.log("Server running on port ${port)) });
+````
+start your server by running node index.js
+DB will connect succssfully 
+![image](https://github.com/user-attachments/assets/1b5fd4b7-7531-46ce-a29d-aa285f6be529)
+
+#Testing Backend code With Postman
+![image](https://github.com/user-attachments/assets/8c454731-2330-4749-b16a-16180b63a46e)
+
+##Frontend Creation
+‼‼‼ t2.micro is to small for running react JS make sure you update into t3.micro or more since it needs 2GB RAM
+````js
+npx create-react-app client
+````
+this will create a react app with folder name client in the parent folder
+![image](https://github.com/user-attachments/assets/7c7b0039-b967-4c07-a296-57de07fe08da)
+
+there are some dependacies that must be installed first
+````js
+npm install concurrently --save-dev
+````
+this package will help us to run both the frontend and backend concurrently
+````js 
+npm install nodeman --save-dev
+````
+this package will help us to run the node when ever we save changes
+
+in the ToDo folder open package.json file and add the following after test script
+````js
+"scripts": [
+"start": "node index.js",
+"start-watch": "nodemon index.js",
+"dev": "concurrently \"npm run start-watch\" \"cd client && npm start\""
+},
+````
+configure proxy in package.json
+
+````bash
+cd client && nano package.json
+````
+add the key value pair in the package.json
+````bash
+nano package.json
+ "proxy": "http://localhost:5000"
+````
+run 
+````js
+npm run dev
+````
+
+‼‼❗❗❗❗❗ make sure you open TCP port 3000 in your EC2
+
+
+#creating your react components
+````bash
+cd client && cd src && mkdir components && touch Input.js ListTodo.js Todo.js
+````
+![image22](https://github.com/user-attachments/assets/3595c361-9f3b-4a3c-87f2-6bbc6c4643c6)
+
+copy and past te following into Input component
+````js
+import React, ( Component from 'react'; import axios from 'axios';
+class Input extends Component {
+state = [
+action:
+}
+addTodo = () => {
+const task = (action: this.state.action)
+if (task.action && task.action.length > 0) {
+axios.post('/api/todos, task) .then(res => { if(res.data) { this.props.getTodos(); this.setState({action: "")) }
+})
+.catch(err => console.log(err))
+Jelse {
+console.log('input field required')
+handleChange = (e) => {
+this.setState({
+action: e.target.value
+1)
+render() {
+let { action} = this.state;
+return (
+<input type="text" onChange={this.handleChange) value=(action) />
+<div>
+<button onClick={this.addTodo]>add todo</button>
+</div>
+)}
+}
+}
+export default Input
+````
+
+To make use of Axios, which is a promise based HTTP client for the browser and node you need it to install in the parent folder which is ToDo
+````js
+npm install axios
+````
