@@ -561,4 +561,4 @@ in the parent folder run
 npm run dev
 ````
 ![image23](https://github.com/user-attachments/assets/222b8d5c-f4d6-490e-b3a2-b33921cbc0b3)
-### Congragulation ✨🎉🎊🎉🎉🎉 you have completed your MERN STACK Deployment on EC@
+### Congratulation ✨🎉🎊🎉🎉🎉 you have completed your MERN STACK Deployment on EC@
