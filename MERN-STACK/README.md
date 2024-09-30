@@ -147,7 +147,9 @@ touch api.js
 nano api.js
 ````
 ![image15](https://github.com/user-attachments/assets/2d7a36ed-c641-4581-a87e-a1420a0aa4b9)
+
 in the nano editor write this code👇 
+
 ![image16](https://github.com/user-attachments/assets/7880f90e-6872-4f80-88a8-98bbdbab13eb)
 
 moving forward let create Models directory
@@ -356,3 +358,207 @@ To make use of Axios, which is a promise based HTTP client for the browser and n
 ````js
 npm install axios
 ````
+Go to ListTodo.js copy past the following
+
+````js
+import React from 'react';
+
+const ListTodo = ({ todos, deleteTodo }) => {
+  return (
+    <ul>
+      {todos && todos.length > 0 ? (
+        todos.map(todo => {
+          return (
+            <li key={todo._id} onClick={() => deleteTodo(todo._id)}>
+              {todo.action}
+            </li>
+          );
+        })
+      ) : (
+        <li>No todo(s) left</li>
+      )}
+    </ul>
+  );
+}
+
+export default ListTodo;
+````
+in your Todo.js write the followinf code
+````js
+import React, { Component } from 'react';
+import axios from 'axios';
+import Input from './Input';
+import ListTodo from './ListTodo';
+
+class Todo extends Component {
+  state = {
+    todos: []
+  }
+
+  componentDidMount() {
+    this.getTodos();
+  }
+
+  getTodos = () => {
+    axios.get('/api/todos')
+      .then(res => {
+        if (res.data) {
+          this.setState({ todos: res.data });
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
+  deleteTodo = (id) => {
+    axios.delete(`/api/todos/${id}`)
+      .then(res => {
+        if (res.data) {
+          this.getTodos();
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
+  render() {
+    let { todos } = this.state;
+    return (
+      <div>
+        <h1>My Todo(s)</h1>
+        <Input getTodos={this.getTodos} />
+        <ListTodo todos={todos} deleteTodo={this.deleteTodo} />
+      </div>
+    );
+  }
+}
+
+export default Todo;
+````
+
+move to te src folder 
+````bash
+cd.. && nano App.js
+````
+````js
+import React, { useState } from 'react';
+import ListTodo from './ListTodo'; // Adjust the path if necessary
+
+const App = () => {
+  const [todos, setTodos] = useState([]);
+
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo._id !== id));
+  };
+
+  return (
+    <div>
+      <h1>Todo List</h1>
+      <ListTodo todos={todos} deleteTodo={deleteTodo} />
+    </div>
+  );
+};
+
+export default App;
+````
+after saving next up will be some styling go to App.css 
+````js
+.app {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #282c34;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.todo-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-input input {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.todo-input button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #61dafb;
+  color: #282c34;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-item {
+  padding: 10px;
+  background: #444;
+  margin: 5px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.todo-item:hover {
+  background: #555;
+}
+
+@media only screen and (min-width: 300px) {
+  .app {
+    width: 80%;
+  }
+  .todo-input input {
+    width: 100%;
+  }
+  .todo-input button {
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .app {
+    width: 60%;
+  }
+  .todo-input input {
+    width: 50%;
+  }
+  .todo-input button {
+    width: 30%;
+    margin-left: 10px;
+    margin-top: 0;
+  }
+}
+````
+index.css
+````js
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  background-color: #282c34;
+  color: #787a80;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+````
+
+in the parent folder run 
+````js
+npm run dev
+````
+![image23](https://github.com/user-attachments/assets/222b8d5c-f4d6-490e-b3a2-b33921cbc0b3)
+####Congradualation ✨🎉🎊🎉🎉🎉 you have completed your MERN STACK Deployment on EC@
