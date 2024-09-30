@@ -109,7 +109,6 @@ ssh -i "Private-key-name.pem" ubuntu@<Public IP address>
      console.log(`Server running on port ${port}`);
    });
    ```
-![image](https://github.com/user-attachments/assets/70198101-0e6d-4f0c-a6c5-4826053cbe98)
 ![image](https://github.com/user-attachments/assets/e7feee7d-4d31-4845-b4ff-2ac8165f9e27)
 check if everything is working 
 
