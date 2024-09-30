@@ -15,7 +15,7 @@ Before starting, ensure that you have an AWS Account and the following packages
 - **MongoDB Atlas Account** for creating a cloud MongoDB database
 - **SSH Client** for connecting to the EC2 instance
 
-##Instance Setup
+## Instance Setup
 1. In the AWS console, create a new t2.micro (or t3.micro) instance with the Ubuntu Server 24.04 LTS image.
 ![image1](https://github.com/user-attachments/assets/c7300248-6d32-4daa-9105-b493bbc7483f)
 
