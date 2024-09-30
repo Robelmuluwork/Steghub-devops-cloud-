@@ -113,7 +113,11 @@ run
 ````js
 node index.js
 ````
- your EC2 <Public IP>:5000
+
+
+You can find it in your AWS web console in EC2 detail 
+![image](https://github.com/user-attachments/assets/3376a6a7-195d-4be3-b06c-12a6f9db2ea3)
+
 ![image](https://github.com/user-attachments/assets/e7feee7d-4d31-4845-b4ff-2ac8165f9e27)
 
 check if everything is working 
