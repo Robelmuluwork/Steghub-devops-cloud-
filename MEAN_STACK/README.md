@@ -449,7 +449,7 @@ nano index.html
 
 * Cpoy and paste the code below into index.html file.
 
-```
+```html
 <!DOCTYPE html>
 <html ng-app="myApp" ng-controller="myCtrl">
 
