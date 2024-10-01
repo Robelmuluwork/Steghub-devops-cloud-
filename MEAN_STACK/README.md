@@ -1,9 +1,23 @@
-# MEAN Stack Deployment to  Ubuntu in AWS
-## MEAN
-1. MangoDB--Documnet Database --> Store & Allows to retrive data.
-2. Express -- Backend Application Framework --> Makes requests to database for Read & Wirtes.
-3. Angular -- Fromtend Application Framework -->Handle Client & Server Request.
-4. Node.js -- JavaScript Runttime Environment --> Accepts request & display results to end user.
+# MEAN Stack Deployment on Ubuntu in AWS
+##Introduction to the MEAN Stack
+The MEAN stack is a powerful combination of technologies used to build modern, full-stack JavaScript applications. It consists of the following:
+
+MongoDB: A NoSQL database where data is stored in flexible, JSON-like documents.
+Express.js: A minimalistic framework for Node.js that simplifies the creation of backend APIs and web servers.
+Angular: A front-end framework for building single-page applications (SPAs) that provides a rich user experience.
+Node.js: A runtime environment that allows JavaScript to run on the server-side.
+This stack enables developers to use JavaScript throughout the full stack, from the client (front end) to the server (back end) and database layer, providing efficiency and consistency.
+
+Objective
+In this guide, you will deploy a MEAN stack application on an Ubuntu EC2 instance in AWS. You’ll configure the back end with Node.js and Express.js, set up MongoDB for data storage, and build the front end using Angular.
+
+#Prerequisites
+Here’s what you need before starting:
+
+AWS Account: You’ll use Amazon Web Services (AWS) to launch an EC2 instance.
+EC2 Instance with Ubuntu: Make sure you have a running Ubuntu instance in AWS.
+Basic Linux Command Knowledge: You’ll work in the Linux command-line environment.
+Familiarity with the MEAN Stack Components: You should know basic concepts related to MongoDB, Express.js, Angular, and Node.js.
 
 ![image](https://github.com/user-attachments/assets/bdb49cc7-b521-422a-93f4-11054958a0a4)
 
@@ -17,7 +31,7 @@ Load Balancing
 
 ## Step 0- Prerequisites:
 * Launch EC2 instance
-![image](https://github.com/user-attachments/assets/c2d5cf88-10a2-4713-ae89-1bff8652868f)
+![image](https://github.com/user-attachments/assets/d9ce9b9b-b32e-49ac-9474-6589d93f1327)
 
 ![image](https://github.com/user-attachments/assets/b2553a30-8076-4f17-bc44-d80b2754b1a0)
 
@@ -26,7 +40,8 @@ Load Balancing
 ![image](https://github.com/user-attachments/assets/9d1d69b2-075e-4b94-a664-b79fa2c1a479)
 
 
-## Step 1 - Install NodeJs
+## Step 1 - Add certificates and Install NodeJs
+
 * node.js is used in this project to set up the Express routes & Angular.js controllers.
 * Update ubuntu
 ```
@@ -43,15 +58,13 @@ sudo apt upgrade
 ```
 sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
 ```
-![image](https://github.com/user-attachments/assets/ec597e9e-4e53-4b02-b73b-75dbef51c710)
-
-
 
 ```
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 ```
 
-![image](https://github.com/user-attachments/assets/f53bcab1-e683-494a-bc11-22c42b48be50)
+![image](https://github.com/user-attachments/assets/149779cc-3540-4571-b4a1-10df3c7f5b9c)
+
 
 
 
@@ -59,7 +72,8 @@ curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 ```
 sudo apt install -y nodejs
 ```
-![image](https://github.com/user-attachments/assets/28ce6cf1-f4c4-41fd-8215-55d436c1843d)
+![image](https://github.com/user-attachments/assets/41cc3e24-ef57-428d-9b58-9f1b501349eb)
+
 
 
 ## Step 2- Install MongoDB
@@ -67,7 +81,6 @@ sudo apt install -y nodejs
 ```
 sudo apt-get install -y gnupg curl
 ```
-![image](https://github.com/user-attachments/assets/d31ed48e-d9bf-4bf6-ad2c-0be7e0182027)
 
 ```
 curl -fsSL https://pgp.mongodb.com/server-7.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-archive-keyring.gpg
@@ -77,21 +90,27 @@ curl -fsSL https://pgp.mongodb.com/server-7.0.asc | sudo gpg --dearmor -o /usr/s
 ```
 echo "deb [ signed-by=/usr/share/keyrings/mongodb-archive-keyring.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
 ```
-![image](https://github.com/user-attachments/assets/fa7c2426-0339-422e-ba95-34e7183feb67)
+![image](https://github.com/user-attachments/assets/ba30b7ae-b682-4bb8-85ac-526fb7d6acfc)
+
 
 
 
 * update
-![image](https://github.com/user-attachments/assets/1c09a282-2d03-4e31-8e59-bc906220093d)
+````bash
+sudo apt-get install -y gnupg curl
 
+````
 
+  ![image](https://github.com/user-attachments/assets/c15ffd34-57e8-4b8c-8b4d-35fe4ba8d711)
 
 
 * Install MongoDB
   ```
   sudo apt-get install -y mongodb-org
   ```
-![image](https://github.com/user-attachments/assets/64fe128b-3514-41ab-a919-65f965605e68)
+
+
+![image](https://github.com/user-attachments/assets/9c174fbe-d782-4285-bab4-f61ecd685ead)
 
 
 4. Start and enable MongoDB
@@ -105,7 +124,8 @@ sudo systemctl enable mongod
 ```
 sudo systemctl status mongod
 ```
-![image](https://github.com/user-attachments/assets/6e8523ec-7ab1-4925-9159-0c4b85ab929d)
+![image](https://github.com/user-attachments/assets/1aa14890-5e5d-4114-b154-a3096df14088)
+
 
 
 * ## Install [npm](https://www.npmjs.com) - Node package manager.
@@ -119,7 +139,8 @@ body-parser package is needed to help process JSON files passed in requests to t
 ```
 sudo npm install body-parser
 ```
-![image](https://github.com/user-attachments/assets/76c07966-f37c-4ee8-8d1b-91ee2d57933e)
+![image](https://github.com/user-attachments/assets/296bb04e-baf7-44c6-9c78-c35d0526e2b4)
+
 
 
 6. Create the project root folder named ‘Books’
@@ -133,19 +154,19 @@ Initialize the root folder
 ```
 npm init
 ```
+![image](https://github.com/user-attachments/assets/2462f907-5f71-4d49-a78f-39626fc0e0c7)
 
-![image](https://github.com/user-attachments/assets/bced0332-7d13-4cf2-b985-6be90009a310)
 
 
 Add file named server.js to Books folder
 
 ```
-vim server.js
+nano server.js
 ```
 
 Copy & Past
 
-```
+```js
 // server.js
 
 const express = require('express');
@@ -183,7 +204,8 @@ app.listen(PORT, () => {
 
 ```
 
-![image](https://github.com/user-attachments/assets/f1a7a88f-98d4-4714-96c0-245f15c781da)
+![image](https://github.com/user-attachments/assets/167563d5-1f85-488c-bdd0-dd60457066b8)
+
 
 
 
@@ -195,7 +217,8 @@ app.listen(PORT, () => {
   ```
   
 
-![image](https://github.com/user-attachments/assets/87eba925-d3e2-4af4-b94c-ed98d0416534)
+![image](https://github.com/user-attachments/assets/a177a8e2-0478-4acf-afc7-c768b59cdf40)
+
 
 
 * In 'Books' folder, create a folder named apps
@@ -210,7 +233,7 @@ vi routes.js
 
 Copy and paste the code below into routes.js
 
-```
+``` js
 
 // routes.js
 
@@ -280,7 +303,8 @@ module.exports = function(app) {
 };
 ```
 
-![image](https://github.com/user-attachments/assets/10e74b53-95c8-4e5a-bc38-6b513ccc0693)
+![image](https://github.com/user-attachments/assets/eb60beb2-ade9-4a09-9fb7-1d48a44c2a59)
+
 
 
 * In the 'apps' folder, create a folder named models
@@ -291,12 +315,12 @@ mkdir models && cd models
 * Create a file named book.js
 
 ```
-vi book.js
+nano book.js
 ```
 
 Copy and paste the code below into 'book.js'
 
-```
+```js
 const mongoose = require('mongoose');
 
 // Define the book schema
@@ -329,7 +353,8 @@ const bookSchema = new mongoose.Schema({
 module.exports = mongoose.model('Book', bookSchema);
 ```
 
-![image](https://github.com/user-attachments/assets/c23ec96b-957c-4e08-89b0-591b1a395185)
+![image](https://github.com/user-attachments/assets/b2f504a2-f4e2-4010-9ed2-e4cee735ca22)
+
 
 
 
@@ -342,26 +367,25 @@ Change the directory back to 'Books'
 cd ../..
 ```
 
-![image](https://github.com/user-attachments/assets/380c7c05-c0be-41c7-b213-8822aeadc247)
-
 
 * Create a folder named public
 ```
 mkdir public && cd public
 ```
 
-![image](https://github.com/user-attachments/assets/4a10545c-af2e-4a57-8b34-edc7a12453e6)
+![image](https://github.com/user-attachments/assets/6b39478d-8d35-4634-99e9-1740ffb267e6)
+
 
 
 
 * Add a file named script.js
 ```
-vi script.js
+nano script.js
 ```
 
 * Copy and paste the Code below (controller configuration defined) into the script.js file.
 
-```
+``` js
 angular.module('myApp', [])
 .controller('myCtrl', function($scope, $http) {
 
@@ -420,7 +444,7 @@ angular.module('myApp', [])
 * In 'public' folder, create a file named index.html
 
 ```
-vi index.html
+nano index.html
 ```
 
 * Cpoy and paste the code below into index.html file.
@@ -522,20 +546,12 @@ vi index.html
 </html>
 ```
 
-```
-ls
-```
-
-![image](https://github.com/user-attachments/assets/aa16be23-64bd-4a17-bc8b-16ba6e39a6c3)
-
-
 
 Change the directory back up to 'Books'
 
 ```
 cd ..
 ```
-![image](https://github.com/user-attachments/assets/d0c348f6-5395-4e5e-8606-ff7c6979cf94)
 
 
 * Start the server by running this command:
@@ -544,7 +560,8 @@ cd ..
   node server.js
   ```
 
-  ![image](https://github.com/user-attachments/assets/613db937-42b1-44ea-8fef-da4426b6b305)
+ ![image](https://github.com/user-attachments/assets/e0ac0485-0da7-47b4-8289-2e2ebfc307ec)
+
 
 
 The server is now up and running, we can connect it via port 3300. You can launch a separate Putty or SSH console to test what curl command returns locally.
@@ -562,7 +579,9 @@ Edit inbound rules
   ```
   https://<publisc-ip-address>:3300
 
-![image](https://github.com/user-attachments/assets/128b272e-1a25-4eba-bb17-895ebc5549a6)
+![image](https://github.com/user-attachments/assets/2de22402-bfe1-4e1a-b807-4f02bd009604)
+
+
 
 
 
