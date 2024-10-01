@@ -1,4 +1,5 @@
 # MEAN Stack Deployment on Ubuntu in AWS
+![image](https://github.com/user-attachments/assets/bdb49cc7-b521-422a-93f4-11054958a0a4)
 ## Introduction to the MEAN Stack
 The MEAN stack is a powerful combination of technologies used to build modern, full-stack JavaScript applications. It consists of the following:
 
@@ -19,15 +20,6 @@ EC2 Instance with Ubuntu: Make sure you have a running Ubuntu instance in AWS.
 Basic Linux Command Knowledge: You’ll work in the Linux command-line environment.
 Familiarity with the MEAN Stack Components: You should know basic concepts related to MongoDB, Express.js, Angular, and Node.js.
 
-![image](https://github.com/user-attachments/assets/bdb49cc7-b521-422a-93f4-11054958a0a4)
-
-![image](https://github.com/user-attachments/assets/cb41cd55-fc3c-4691-86c8-2f3f8a58d97a)
-
-
-other side practice :
-https://html-css-js.com/
-OSI model
-Load Balancing
 
 ## Step 0- Prerequisites:
 * Launch EC2 instance
