@@ -24,14 +24,8 @@ Familiarity with the MEAN Stack Components: You should know basic concepts relat
 
 ## Step 0- Prerequisites:
 * Launch EC2 instance
-![image](https://github.com/user-attachments/assets/d9ce9b9b-b32e-49ac-9474-6589d93f1327)
-
-![image](https://github.com/user-attachments/assets/b2553a30-8076-4f17-bc44-d80b2754b1a0)
 
 * connect instance via Cli from wen cosole in aws
-* or connect via ssh client
-![image](https://github.com/user-attachments/assets/9d1d69b2-075e-4b94-a664-b79fa2c1a479)
-
 
 ## Step 1 - Add certificates and Install NodeJs
 
