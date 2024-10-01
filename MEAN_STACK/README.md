@@ -25,7 +25,7 @@ Familiarity with the MEAN Stack Components: You should know basic concepts relat
 ## Step 0- Prerequisites:
 * Launch EC2 instance
 
-* connect instance via Cli from wen cosole in aws
+* connect instance via Cli from wen cosole in aws i'm  using kali because i'm a big fan of linux 😊😊
 
 ## Step 1 - Add certificates and Install NodeJs
 
