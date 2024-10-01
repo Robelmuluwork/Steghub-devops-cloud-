@@ -1,5 +1,5 @@
 # MEAN Stack Deployment on Ubuntu in AWS
-##Introduction to the MEAN Stack
+## Introduction to the MEAN Stack
 The MEAN stack is a powerful combination of technologies used to build modern, full-stack JavaScript applications. It consists of the following:
 
 MongoDB: A NoSQL database where data is stored in flexible, JSON-like documents.
