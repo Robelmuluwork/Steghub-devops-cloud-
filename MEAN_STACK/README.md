@@ -38,7 +38,6 @@ sudo apt update -y
 ```
 sudo apt upgrade
 ```
-![image](https://github.com/user-attachments/assets/0714fa64-823b-4530-b455-b4de83dc385f)
 
 
 * Add certificate
