@@ -1,5 +1,6 @@
-# MEAN Stack Deployment on Ubuntu in AWS
 ![image](https://github.com/user-attachments/assets/bdb49cc7-b521-422a-93f4-11054958a0a4)
+# MEAN Stack Deployment on Ubuntu in AWS
+
 ## Introduction to the MEAN Stack
 The MEAN stack is a powerful combination of technologies used to build modern, full-stack JavaScript applications. It consists of the following:
 
