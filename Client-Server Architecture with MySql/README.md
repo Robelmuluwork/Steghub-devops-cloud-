@@ -1,5 +1,4 @@
-                                              ![What_is_Client-Server_Architecture1](https://github.com/user-attachments/assets/36401a8e-e5ba-4798-bef5-aad128d66fc8)
-
+   ![What_is_Client-Server_Architecture1](https://github.com/user-attachments/assets/84b0348d-1b9c-4883-b661-56642d1ad932)
 
 # Client-Server Architecture with MySql
 ## Introduction
