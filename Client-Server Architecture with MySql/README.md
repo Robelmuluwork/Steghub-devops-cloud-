@@ -147,6 +147,5 @@ If you see an output similar to the image below, you have successfully completed
 
 ## Congratulations!✨🎉🎉🎊🎉🎉
 
-You have deployed a fully functional MySQL Client-Server setup. Well done! You can further explore this setup by practicing creating and dropping databases & tables, and inserting and selecting records.
-
+You have deployed a fully functional MySQL Client-Server setup. Well done! 
 
