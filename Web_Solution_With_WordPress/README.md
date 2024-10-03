@@ -32,21 +32,24 @@ By now we should know how to spin up an EC2 instanse on AWS, In previous project
 
 1. Launch an EC2 instance that will serve as "Web Server" and Create 3 volumes in the same AZ as Web Server EC2, each of 10 GiB.
 
-![image](https://github.com/user-attachments/assets/c77a1830-4ad5-4907-8243-c5155f38c8a0)
+![image](https://github.com/user-attachments/assets/9de31cd6-f006-446f-963a-4da4bfa7ec20)
+
 
 2. Connect to your instance via ssh
 ```
   ssh -i <key-pair-name> ec2-user@<ip-address>
 ```
-![image](https://github.com/user-attachments/assets/24b31fb8-ebb7-47c9-a1d3-32f9d809f127)
+![image](https://github.com/user-attachments/assets/e8ff6c3e-a36a-4c8d-92f6-fd49a0388416)
+
 
 3. Creating 3 volumes in the same AZ as Web Server EC2, each of 10 GiB.
 
 On same page of EC2 we have to scroll down and Have to Click on Snapshot.
-![image](https://github.com/user-attachments/assets/bdac19d3-6deb-4026-afb4-4473a6351f94)
+![image](https://github.com/user-attachments/assets/d1bd4f6a-eb1d-4e0f-851a-6e7206b34eab)
 
+make sure your choose the right instance
+![image](https://github.com/user-attachments/assets/888f5621-b41c-4928-8ee3-25bad555f75b)
 
-![image](https://github.com/user-attachments/assets/bdcb7285-ec38-4583-812d-5dd6e266a016)
 
 Have to Create the 3 volume with the same setting.
 ![image](https://github.com/user-attachments/assets/948781c0-6254-40ec-b75b-22a01a22dc44)
