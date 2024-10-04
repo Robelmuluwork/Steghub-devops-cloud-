@@ -206,7 +206,6 @@ sudo blkid
 ```
 sudo vi /etc/fstab
 ```
-![image](https://github.com/user-attachments/assets/3837a03e-e274-4251-a1b8-6c7350721ee8)
 
 
 Update /etc/fstab in this format using your own UUID and rememeber to remove the leading and ending quotes.
