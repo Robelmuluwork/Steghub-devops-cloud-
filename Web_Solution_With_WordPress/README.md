@@ -54,15 +54,29 @@ make sure your choose the right instance
 Have to Create the 3 volume with the same setting.
 ![image](https://github.com/user-attachments/assets/948781c0-6254-40ec-b75b-22a01a22dc44)
 
-![image](https://github.com/user-attachments/assets/d93676f2-0b96-4315-a2b6-febeb4577b1e)
+![image](https://github.com/user-attachments/assets/18d31d9d-6b84-42cb-b886-9723b692a3dd)
+
 
 Now all this 3 Newly Created Volume Need to attach on Existing VMs.
 
 4. Use lsblk command to inspect what block devices are attached to the server.
 
-![image](https://github.com/user-attachments/assets/b5314bfa-6ee8-4062-ad3d-0241cb3c43cb)
+   ````bash
+     lsblk
+   ````
+
+![image](https://github.com/user-attachments/assets/352046a1-0279-4b73-a11a-61a6876521b6)
+
+
+choose the available volume and attached it to your created instance
+![image](https://github.com/user-attachments/assets/105cd35d-475c-43fe-9ad0-ccd656112c8b)
+
+![image](https://github.com/user-attachments/assets/21ba65c2-097d-47fb-b269-b0c528b0f97d)
+![image](https://github.com/user-attachments/assets/aa7e6ec0-1492-4fac-a1a3-4c4d9306b55f)
 
 The attache EBS Volume their names will likely be xvdbf xvdbg xvdbh.
+
+![image](https://github.com/user-attachments/assets/c9bfa3e8-fcd6-4472-895a-4a2d2934e5d5)
 
 5. Use gdisk utility to create a single partition on each of the 3 disks.
 
@@ -77,17 +91,21 @@ b) Press Enter to select the default partition number
 c) Press Enter to accept the default last sector.
 d) Choose the partition type by typing 8300 for a Linux filesystem (ext4).
 e) To Write changes to the disk, Once the partition is created, type w
+![image](https://github.com/user-attachments/assets/4a6c0a23-e9a9-4d4d-ad59-ecd78095a228)
 
 Have to Do above step for all 3 disk xvdbf xvdbg xvdbh.
 
 6. Use lsblk utility to view the newly configured partition on each of the 3 disks.
- ![image](https://github.com/user-attachments/assets/946c92cd-71c6-4be4-a601-0b724f7a5cdf)
+![image](https://github.com/user-attachments/assets/a744dfc8-4b3a-44a1-960d-7d11417c3752)
+
 
 7. Install lvm2 package using sudo yum install lvm2. Run sudo lvmdiskscan command to check for available partitions.
 
 ```
   sudo yum install lvm2 -y
 ```
+![image](https://github.com/user-attachments/assets/2441ed7d-6a11-49bf-80f0-2a46e6dfb4a3)
+
 8. Use pvcreate utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM.
 
 ```
@@ -97,14 +115,16 @@ sudo pvcreate /dev/xvdbh1
 
 ```
 
-![image](https://github.com/user-attachments/assets/456df784-d45c-4824-be0d-c644a1cb8759)
+![image](https://github.com/user-attachments/assets/8df71018-e685-4eda-8279-aa835ec13062)
+
 
 9. Verify that Physical volume has been created successfully by running sudo pvs.
 
 ```
 sudo pvs
 ```
-![image](https://github.com/user-attachments/assets/3436be6e-c1fa-41f6-9927-9508c4ffa411)
+![image](https://github.com/user-attachments/assets/24c25f55-5f98-4811-9db0-8892a00e5105)
+
 
 
 10. Use vgcreate utility to add all 3 PVs to a volume group (VG). Name the VG webdata-vg
@@ -112,32 +132,38 @@ sudo pvs
 ```
 sudo vgcreate webdata-vg /dev/xvdbh1 /dev/xvdbg1 /dev/xvdbf1
 ```
+![image](https://github.com/user-attachments/assets/208b2b55-80f9-4452-8b71-bc698992cab8)
+
 
 11. Verify that your VG has been created successfully by running sudo vgs
 ```
 sudo vgs
 ```
-![image](https://github.com/user-attachments/assets/1319fbc6-7dc1-4ab8-abea-a155363aecae)
+![image](https://github.com/user-attachments/assets/b5b4fde1-a5db-4eba-89ca-2645b8f2b16e)
+
 
 12. Use lvcreate utility to create 2 logical volumes. apps-lv (Use half of the PV size), and logs-lv Use the remaining space of the PV size. NOTE: apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
 ```
 sudo lvcreate -n apps-lv -L 14G webdata-vg
 sudo lvcreate -n logs-lv -L 14G webdata-vg
 ```
-![image](https://github.com/user-attachments/assets/729b9a87-11ac-48dd-ac45-310165aca8dc)
+![image](https://github.com/user-attachments/assets/d2ade99d-f5e4-4295-b6d0-2bec945c6e60)
+
 
 13. Verify that your Logical Volume has been created successfully.
 ```
 sudo lvs
 ```
-![image](https://github.com/user-attachments/assets/69f60fab-e250-4e44-94b8-461e8864d84b)
+![image](https://github.com/user-attachments/assets/e2d8f084-13de-4a70-befd-8dcd4ab35e49)
+
 
 14. Verify the entire setup
 ```
 sudo vgdisplay -v #view complete setup - VG, PV, and LV
 sudo lsblk
 ```
-![image](https://github.com/user-attachments/assets/4df32d5e-384b-4fa8-a4df-cd71775b24cd)
+![image](https://github.com/user-attachments/assets/04b4019e-8779-4340-b094-8a1265ed8f8d)
+
 
 
 15. Use mkfs.ext4 to format the logical volumes with ext4 filesystem
@@ -146,6 +172,8 @@ sudo lsblk
     sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
     sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
 ```
+![image](https://github.com/user-attachments/assets/452908cb-1a3a-4548-afbb-c775f7ca4f8c)
+
 
 16. Create /var/www/html directory to store website files sudo mkdir -p /var/www/html.
 17. Create /home/recovery/logs to store backup of log data sudo mkdir -p /home/recovery/logs.
@@ -153,6 +181,8 @@ sudo lsblk
 ```
 sudo mount /dev/webdata-vg/apps-lv /var/www/html/
 ```
+![image](https://github.com/user-attachments/assets/eb911557-bf1a-4041-9afb-57adad0efd23)
+
 20. Use rsync utility to backup all the files in the log directory /var/log into /home/recovery/logs (This is required before mounting the file system).
 ```
 sudo rsync -av /var/log/ /home/recovery/logs/
@@ -166,6 +196,8 @@ sudo mount /dev/webdata-vg/logs-lv /var/log
 ```
 sudo rsync -av /home/recovery/logs/ /var/log
 ```
+![image](https://github.com/user-attachments/assets/c333b7f0-1a56-4011-b1b5-9270364694cf)
+
 23. Update /etc/fstab file so that the mount configuration will persist after restart of the server.
 ```
 sudo blkid
@@ -183,11 +215,14 @@ Update /etc/fstab in this format using your own UUID and rememeber to remove the
 sudo mount -a
 sudo systemctl daemon-reload
 ```
+![image](https://github.com/user-attachments/assets/dd2ff1ff-7dc7-40a5-bef2-13fc5d9efb24)
+
 25. Verify your setup by running df -h, output must look like this:
 ```
 df -h
 ```
-![image](https://github.com/user-attachments/assets/fdcc297b-87b4-47d8-ae71-797cebb56826)
+![image](https://github.com/user-attachments/assets/8f1bce2d-172c-4612-96ac-6a6924751623)
+
 
 # Step 2 — Prepare the Database Server
 NOTE: Launch a second RedHat EC2 instance that will have a role - 'DB Server' Repeat the same steps as for the Web Server, but instead of apps-lv create db-lv and mount it to /db directory instead of /var/www/html/.
@@ -200,7 +235,8 @@ Step 3 — Install WordPress on your Web Server EC2 Which we have already Setup 
 ```
 sudo yum -y update
 ```
-![image](https://github.com/user-attachments/assets/6bf73e6e-4c60-4c5b-b276-2c8ce8bca3e5)
+![image](https://github.com/user-attachments/assets/52be043f-3f1d-414c-ae17-e28f817daebc)
+
 
 2. Install wget, Apache and it's dependencies.
 ```
@@ -251,10 +287,9 @@ sudo systemctl restart mysqld
 ```
 sudo systemctl enable mysqld
 ```
+![image](https://github.com/user-attachments/assets/89669787-c0e5-4457-a13e-5878d0f13850)
+
 # Step 5 — Configure DB to work with WordPress
-
-![image](https://github.com/user-attachments/assets/f291c10f-ad85-4558-a53f-8178642804b9)
-
 ```
 sudo mysql
 CREATE DATABASE wordpress;
@@ -264,11 +299,13 @@ FLUSH PRIVILEGES;
 SHOW DATABASES;
 exit
 ```
+![image](https://github.com/user-attachments/assets/4d9451c6-1ea8-4820-883b-96194cf4beb3)
 
 # Step 6 — Configure WordPress to connect to remote database.
 
 hint: Do not forget to open MySQL port 3306 on DB Server EC2. For extra security, you shall allow access to the DB server ONLY from your Web Server's IP address, so in the Inbound Rule configuration specify source as /32
-![image](https://github.com/user-attachments/assets/094f38e5-a99a-4ffa-9856-e90f0cf46ce4)
+![image](https://github.com/user-attachments/assets/d2a330a8-cdb0-4f39-a743-be6ace697e7e)
+
 
 1. Install MySQL client and test that you can connect from your Web Server to your DB server by using mysql-client.
 
@@ -282,7 +319,8 @@ After Login to databases
 ```
 show databases;
 ```
-![image](https://github.com/user-attachments/assets/65bb3154-c461-4113-bb9e-bc95ab36fa97)
+![image](https://github.com/user-attachments/assets/4978e7dd-f9ae-4316-8706-7dc9df7563aa)
+
 
 4. Change permissions and configuration so Apache could use WordPress:
 
@@ -312,6 +350,8 @@ d. Add or modify the following:
     AllowOverride All
 </Directory>
 ```
+![image](https://github.com/user-attachments/assets/d9f27cc9-79f8-4819-802f-16099e123eff)
+
 e. Enable mod_rewrite:
 
 ```
@@ -365,9 +405,11 @@ bind-address = 0.0.0.0
 
 4. Try to access from your browser the link to your WordPress http://<Web-Server-Public-IP-Address>/wordpress/
 
-![image](https://github.com/user-attachments/assets/47b49f6a-bfbb-44ee-82cb-eef712d2fe13)
+![image](https://github.com/user-attachments/assets/b372758c-0738-47b9-99c1-ba0c28cbd511)
 
-![image](https://github.com/user-attachments/assets/7b388ab4-6b82-4182-aa91-0dd36125d70d)
+
+![image](https://github.com/user-attachments/assets/bc71926c-3a79-48a3-b1a3-f567c47ef0b3)
+
 
 # CONCLUSION
 
