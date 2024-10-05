@@ -16,15 +16,18 @@ It is important to know what storage solution is suitable for what use cases, fo
 
 ## Step 1 - Prepare NFS Server
 1. Spin up a new EC2 instance with RHEL Linux 9 Operating System.
-![image](https://github.com/user-attachments/assets/2c4ef0c0-aff2-44a9-aedf-fa3868e130fd)
+![image](https://github.com/user-attachments/assets/bfa7d172-ddbb-4705-ae41-9b5377a5be59)
 
-![image](https://github.com/user-attachments/assets/59951865-2712-46c5-8750-6f559e1f5141)
+
+![image](https://github.com/user-attachments/assets/942d2ad9-55ad-4984-8cc4-ec2e3e1f868a)
+
 
 
 3. Based on LVM experience from Project 6, Configure LVM on the Server.
 
 - Based on your LVM experience from Project 6, Configure LVM on the Server. Create 3 volumes in the same AZ as your Web Server EC2, each of 20 GiB.
-![image](https://github.com/user-attachments/assets/80194ff5-faff-4673-8561-7f48c7217fb9)
+![image](https://github.com/user-attachments/assets/4912ef5e-25c9-4bfe-b14d-a7e1f6dd8fc7)
+
 
 - Updating the Machine.
 
@@ -36,24 +39,28 @@ List the disk
 ```
 lsblk
 ```
-![image](https://github.com/user-attachments/assets/c733fbb8-7726-4463-8a02-9d8535771f78)
+![image](https://github.com/user-attachments/assets/b7f6c870-4775-4fbf-9d9c-09e9d8fbe28f)
+
 
 Use df -h command to see all mounts and free space
 
 ```
 df -h
 ```
-![image](https://github.com/user-attachments/assets/0d55ad7a-ec24-4ae8-8b3f-8c57f1f5b373)
+![image](https://github.com/user-attachments/assets/83e719bf-a0cc-447b-bb04-79fd8e1d0a79)
+
 
 Use gdisk utility to create a single partition on each of the 3 disks:
 ```
-sudo gdisk /dev/xvdbb
+sudo gdisk /dev/xvdbf
 ```
-![image](https://github.com/user-attachments/assets/35b6c0f0-5992-4e23-8c72-f5f81d43bf5c)
+![image](https://github.com/user-attachments/assets/bbc564cb-68e5-4eec-9efb-3804e45dc161)
+
 we follow the same steps for remaining two and create partision:
 
 Use lsblk utility to view the newly configured partition on each of the 3 disks.
-![image](https://github.com/user-attachments/assets/7cd71b03-c86e-4d22-b915-cc8be4bb6473)
+![image](https://github.com/user-attachments/assets/f8a0fe31-3c5e-4add-bd74-05e78bb9801a)
+
 
 
 Install lvm2 package: creating logical volumes, which can be resized or moved without needing to unmount file systems.
@@ -65,19 +72,22 @@ Check for available partitions.
 ```
 sudo lvmdiskscan 
 ```
-![image](https://github.com/user-attachments/assets/a529d40f-96be-4667-9d53-4a12107300af)
+![image](https://github.com/user-attachments/assets/d22cd8ba-aa60-4b8a-b8d5-3e9059bd8ad4)
+
 
 Create Physical Volumes Use pvcreate utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM
 ```
 sudo pvcreate /dev/xvdbb1 /dev/xvdbc1 /dev/xvdbd1
 ```
-![image](https://github.com/user-attachments/assets/fe65966b-0a85-4d26-9d70-92c8437d1672)
+![image](https://github.com/user-attachments/assets/79263819-7710-447a-a578-7995e9189d21)
+
 
 Verify that your Physical volume has been created successfully
 ```
 sudo pvs
 ```
-![image](https://github.com/user-attachments/assets/22480d3a-daa8-45a7-b874-e52379efefa7)
+![image](https://github.com/user-attachments/assets/c4783c35-a370-4360-b6fa-99cad81d4419)
+
 
 Use vgcreate utility to add all 3 PVs to a volume group (VG) Name the VG webdata-vg
 ```
@@ -88,7 +98,8 @@ Verify that your VG has been created successfully
 ```
 sudo vgs
 ```
-![image](https://github.com/user-attachments/assets/26356b1d-7512-4261-84eb-f5e96d036d7d)
+![image](https://github.com/user-attachments/assets/750f9dcf-6771-4326-892e-d82741149eb8)
+
 
 **Create Logical Volumes Use lvcreate utility to create logical volumes
 ```
@@ -96,6 +107,7 @@ sudo lvcreate -L 14G -n lv-apps webdata-vg
 sudo lvcreate -L 14G -n lv-logs webdata-vg
 sudo lvcreate -L 14G -n lv-opt  webdata-vg
 ```
+![image](https://github.com/user-attachments/assets/c81eef88-95be-43ad-b283-b8c85a439168)
 
 Verify that our Logical Volume has been created successfully
 ```
@@ -107,7 +119,8 @@ Verify the entire setup #view complete setup - VG , PV, and LV
 sudo vgdisplay -v
 ```
 
-![image](https://github.com/user-attachments/assets/e862aa8b-c776-4e28-9037-35fe4e68b973)
+![image](https://github.com/user-attachments/assets/16295300-6fd2-40ab-9481-76bfd8a5e808)
+
 
 
 2. Instead of formatting the disks as ext4 you will have to format them as xfs.
@@ -123,12 +136,14 @@ sudo mkfs.xfs /dev/webdata-vg/lv-apps
 sudo mkfs.xfs /dev/webdata-vg/lv-logs
 sudo mkfs.xfs /dev/webdata-vg/lv-opt
 ```
-![image](https://github.com/user-attachments/assets/e97a0840-7bb4-46d3-8569-c3aa3c647253)
+![image](https://github.com/user-attachments/assets/48857069-1f3b-4cda-bb4a-d4c764674007)
+
 
 
 3. Create mount points on /mnt directory for the logical volumes as follows: Mount lv-apps on /mnt/apps - To be used by webservers Mount lv-logs on /mnt/logs - To be used by webserver logs Mount lv-opt on /mnt/opt - To be used by Jenkins server in Project 8.
 
-![image](https://github.com/user-attachments/assets/912cd0aa-ef96-400d-ba9b-1aa888c5ac08)
+![image](https://github.com/user-attachments/assets/4da42fa4-0d6f-47a9-b6f5-bbc4975f878d)
+
 
 Mount Logical Volumes
 ```
@@ -147,6 +162,7 @@ Add the following lines:
 /dev/webdata-vg/lv-logs /mnt/logs xfs defaults 0 0
 /dev/webdata-vg/lv-opt /mnt/opt xfs defaults 0 0
 ```
+![image](https://github.com/user-attachments/assets/544d06ba-9cb0-434d-a07d-bd29e2738565)
 
 Verify Mounts:
 ```
@@ -187,7 +203,7 @@ sudo systemctl restart nfs-server.service
 Configure access to NFS for clients within the same subnet (example of Subnet CIDR - 172.31.32.0/20 ):
 
 ```
-sudo vi /etc/exports
+sudo nano /etc/exports
 ```
 
 Add the following lines:
@@ -197,8 +213,9 @@ Add the following lines:
 /mnt/opt 172.31.32.0/20(rw,sync,no_all_squash,no_root_squash)
 ```
 
-![image](https://github.com/user-attachments/assets/40138b8c-271d-4a05-bbf6-8d8e1227356b)
-save and exit from the editor by Esc + :wq!
+![image](https://github.com/user-attachments/assets/220042b2-80dc-470f-9169-ac488014a912)
+
+save and exit from the editor by ctrl+s ctrl+x
 
 Export the NFS Shares:
 
@@ -218,14 +235,16 @@ rpcinfo -p | grep nfs
 - UDP 111
 - UDP 2049
 
-![image](https://github.com/user-attachments/assets/d140b957-7893-4063-8e45-7572d138edd6)
+![image](https://github.com/user-attachments/assets/18f6b8c1-fef2-435c-80c9-b3eb2a599ba0)
+
 
 
 ## Step 2 - Configure the database server
 
 Log to aws account console and create EC2 instance of t2.micro type with Ubuntu Server launch in the default region ap-south-1. name instance MySQL server.
 
-![image](https://github.com/user-attachments/assets/e75db174-6c68-4255-9d42-bdb7bb379ea4)
+![image](https://github.com/user-attachments/assets/973d3bd9-6456-46d5-8f5b-4f57cf31aecb)
+
 
 ```
 sudo apt update -y
@@ -246,7 +265,8 @@ sudo systemctl status mysql
 ```
 sudo systemctl enable mysql
 ```
-![image](https://github.com/user-attachments/assets/86547ed4-1d8a-4bdd-8464-3a558a938b84)
+![image](https://github.com/user-attachments/assets/d01fbdfd-e195-426f-b228-89ba74c8f9ca)
+
 
 4. Create a database Tooling and User name it webaccess.
 
@@ -269,7 +289,8 @@ In this step we will do the following:
 
 1. Launch a new EC2 instance with REDHAT Operating System.
 
-![image](https://github.com/user-attachments/assets/36ca9a1a-714b-4fcf-94c1-bb9ab16b88de)
+![image](https://github.com/user-attachments/assets/06fa9e34-4f0c-4c20-886d-ad131d561752)
+
 
 
 Updating machine...
@@ -331,10 +352,13 @@ You can try to create a new file.
 ```
 sudo touch test.txt
 ```
-![image](https://github.com/user-attachments/assets/faa0ad8d-506f-4524-b09f-24f22c5b74f4)
+![image](https://github.com/user-attachments/assets/eceb9a9b-94fc-4e94-bb3f-e5836cde221f)
+
+
 
 We can see the text.txt file created inside our nfs server /mnt/apps directory. So they are communicating perfectly.
-![image](https://github.com/user-attachments/assets/8abd4b44-32f5-462a-b948-acaa791c29da)
+![image](https://github.com/user-attachments/assets/52ee92d3-e93d-42ca-93d0-66e617bf0f82)
+
 
 6. Fork the tooling source code from Darey.io Github Account to your Github account. Download git.
 
@@ -347,7 +371,8 @@ Clone the repository you forked the project into
 ```
 git clone https://github.com/ksal1235/tooling.git
 ```
-![image](https://github.com/user-attachments/assets/cb1da55f-70e8-4989-a000-b96677804b93)
+![image](https://github.com/user-attachments/assets/8fcb2a89-047b-4be4-9e47-f0ec0bcb2f8d)
+
 
 8. Deploy the tooling website's code to the Webserver. Ensure that the html folder from the repository is deployed to /var/www/html
 
@@ -361,7 +386,8 @@ sudo vi /etc/sysconfig/selinux
 ```
 
 and set SELINUX=disabled
-![image](https://github.com/user-attachments/assets/b029bfae-e640-443f-b88f-55b81a799f4b)
+![image](https://github.com/user-attachments/assets/5c78675f-2278-4471-bf18-1979298642c1)
+
 
 Then restrt httpd.
 
@@ -370,7 +396,6 @@ sudo systemctl restart httpd
 sudo systemctl status httpd
 ```
 9. Update the website's configuration to connect to the database (in /var/www/html/functions.php file). Apply tooling-db.sql script to your database using this command.
-![image](https://github.com/user-attachments/assets/b8736d18-7bbd-47ba-b0cd-de318b08a9bc)
 
 
 10. Create in MySQL a new admin user with username: myuser and password: password:
@@ -407,12 +432,13 @@ INSERT INTO 'users' ('id', 'username', 'password', 'email', 'user_type', 'status
 ```
 Open the website in your browser http://Web-Server-Public-IP-Addressor Public-DNS-Name/index.php and make sure you can login into the website with your user and password.
 ```
-http://3.109.139.187/login.php
+http://34.203.210.189/login.php
 ```
 ![image](https://github.com/user-attachments/assets/c5329c03-f8e4-42c4-aab7-6c3d85f152e0)
 
 Login with Username and Password:
-![image](https://github.com/user-attachments/assets/438845c1-c379-4f8d-ac5b-16b31ca842b6)
+![image](https://github.com/user-attachments/assets/1a029b35-356e-47c6-aed2-229f41f4de06)
+
 
 ## Conclusion:
 
