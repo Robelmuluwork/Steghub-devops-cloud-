@@ -365,12 +365,12 @@ We can see the text.txt file created inside our nfs server /mnt/apps directory. 
 
 ```
 sudo yum install git -y
-git clone https://github.com/ksal1235/tooling.git
+https://github.com/Robelmuluwork/tooling
 ```
 Clone the repository you forked the project into
 
 ```
-git clone https://github.com/ksal1235/tooling.git
+https://github.com/Robelmuluwork/tooling
 ```
 ![image](https://github.com/user-attachments/assets/8fcb2a89-047b-4be4-9e47-f0ec0bcb2f8d)
 
