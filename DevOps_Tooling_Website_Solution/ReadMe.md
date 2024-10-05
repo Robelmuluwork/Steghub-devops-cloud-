@@ -289,7 +289,8 @@ In this step we will do the following:
 
 1. Launch a new EC2 instance with REDHAT Operating System.
 
-![image](https://github.com/user-attachments/assets/06fa9e34-4f0c-4c20-886d-ad131d561752)
+![image](https://github.com/user-attachments/assets/5c40c1c0-fc5b-4af5-9f59-32ac0a861149)
+
 
 
 
@@ -439,7 +440,7 @@ http://34.203.210.189/login.php
 Login with Username and Password:
 ![image](https://github.com/user-attachments/assets/1a029b35-356e-47c6-aed2-229f41f4de06)
 
-
+## 🎆🧨🎉🎊🎊✨ CONGRATULATIONS You Have Deployed Your DevOps Tooling website solution
 ## Conclusion:
 
 The DevOps Tooling Website Solution project demonstrates the successful implementation of a robust and scalable web solution using DevOps principles and tools. By leveraging technologies such as Apache, PHP, MySQL, and NFS, the project showcases the ability to deploy a reliable and efficient web application.
@@ -453,6 +454,3 @@ The setup of multiple web servers running Apache and PHP, allowing for the hosti
 The integration of version control using Git, enabling effective collaboration, code management, and deployment processes.
 The project's architecture, which separates the web servers, database server, and shared storage, demonstrates a modular and scalable approach. This design allows for easy maintenance, troubleshooting, and future expansion as the application grows.
 
-By following DevOps best practices and utilizing industry-standard tools, the project showcases the benefits of automation, collaboration, and continuous integration/continuous deployment (CI/CD) pipelines. The implemented solution not only improves the efficiency of the development and deployment processes but also enhances the overall reliability and performance of the web application.
-
-In conclusion, the DevOps Tooling Website Solution project serves as a testament to the power of DevOps methodologies in delivering high-quality, scalable, and maintainable web solutions. The project's success highlights the importance of leveraging the right tools, adopting best practices, and fostering a culture of collaboration and automation in modern software development and operations.
