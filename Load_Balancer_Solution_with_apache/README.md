@@ -39,14 +39,16 @@ Make sure that you have the following servers installed and configured within th
 
 ![image](https://github.com/user-attachments/assets/a27fb54b-4413-4a80-ba6c-1b055bbd6b1b)
 
-![image](https://github.com/user-attachments/assets/a893e0cd-4825-480a-8ea8-63b2dca9ef06)
+![image](https://github.com/user-attachments/assets/7cadbf4b-32fc-492d-af4a-248bbfa79c73)
+
 
 
 #### Configure Apache As A Load Balancer:
 
 1. Create an Ubuntu Server 20.04 EC2 instance and name it Project-8-apache-lb, so your EC2 list will look like this.
 2. Open TCP port 80 on Project-8-apache-lb by creating an Inbound Rule in Security Group.
-![image](https://github.com/user-attachments/assets/ab75201c-5ab2-4498-85f2-747df344c5be)
+![image](https://github.com/user-attachments/assets/6570e376-f99b-434f-bffe-c5acda7d4f8b)
+
 
 4. Install Apache Load Balancer on Project-8-apache-lb server and configure it to point traffic coming to LB to both Web Servers:
 
@@ -61,14 +63,16 @@ Installing the apache Webserver:
 ````
 sudo apt install apache2 -y
 ````
-![image](https://github.com/user-attachments/assets/4c9709f7-1771-4212-a554-64dcd67378c2)
+![image](https://github.com/user-attachments/assets/411cba7c-3f62-43bc-9be6-e838e22fc2b6)
+
 
 
 Installing the libxml2-dev.
 ```
 sudo apt-get install libxml2-dev
 ```
-![image](https://github.com/user-attachments/assets/961efa7e-32ec-4e77-bda5-2cca7dc36cd5)
+![image](https://github.com/user-attachments/assets/f505598f-8431-42d1-bc33-2b19fb04c89f)
+
 
 #### Enable following modules:
 
@@ -79,7 +83,10 @@ sudo a2enmod proxy_balancer
 sudo a2enmod proxy_http
 sudo a2enmod headers
 sudo a2enmod lbmethod_bytraffic
+udo a2enmod lbmethod_byrequests
+
 ```
+![image](https://github.com/user-attachments/assets/2899a99d-ce10-46a2-a516-98e23b9f0840)
 
 #### Restart apache2 service:
 ```
@@ -89,13 +96,14 @@ Make sure apache2 is up and running:
 ```
 sudo systemctl status apache2
 ```
-![image](https://github.com/user-attachments/assets/6b724f95-ca5d-4803-a8e7-063e63162044)
+![image](https://github.com/user-attachments/assets/77e60b5d-e860-4dab-9174-c72c61c95cb3)
 
 Configure load balancing:
-```
-sudo vi /etc/apache2/sites-available/000-default.conf
-```
 
+```
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+add this configuration into section <VirtualHost *:80> </VirtualHost>
 ```
         <Proxy "balancer://mycluster">
         BalancerMember http://172.31.45.101:80 loadfactor=5 timeout=1
@@ -108,15 +116,18 @@ sudo vi /etc/apache2/sites-available/000-default.conf
         ProxyPassReverse "/" "balancer://mycluster/"
 
 ```
-![image](https://github.com/user-attachments/assets/50587591-a8ad-4371-9f45-3f12886553ce)
+![image](https://github.com/user-attachments/assets/34020d60-389c-48fe-a8c5-4839cc45cccf)
+
 
 
 #Restart apache server
 ```
 sudo systemctl restart apache2
+sudo systemctl status apache2
 ```
 
-![image](https://github.com/user-attachments/assets/d525d543-8b1c-447e-81c7-300be9325d8b)
+![image](https://github.com/user-attachments/assets/b2b0ebd3-ad6c-4f58-85e1-5d76413058c5)
+
 
 by traffic balancing method will distribute incoming load between your Web Servers according to current traffic load. We can control in which proportion the traffic must be distributed by loadfactor parameter.
 
@@ -124,12 +135,14 @@ by traffic balancing method will distribute incoming load between your Web Serve
 #### Accessing the LoadBlanacer Through Public Ips.
 
 ```
-http://13.233.152.48/login.php
+[http://13.233.152.48/login.php](http://34.203.210.189/login.php)
 ```
-![image](https://github.com/user-attachments/assets/7309f70b-d6a4-498e-9883-97bc2b5ac1be)
+![image](https://github.com/user-attachments/assets/b3ca95eb-4156-4576-99d4-389c34dceaff)
+
 
 Accessing the page via credential.
-![image](https://github.com/user-attachments/assets/46ec2439-ef7c-4591-b2ea-bf261c31daba)
+![image](https://github.com/user-attachments/assets/77a4f1f6-be64-4e94-9b13-2ed61696267d)
+
 
 #### Webserver logs.
 
@@ -139,11 +152,8 @@ Checking the logs
 ```
 WebServer1 Logs
 
-![image](https://github.com/user-attachments/assets/394aaf7d-386f-4d99-aad5-aac2fbba40f8)
+![image](https://github.com/user-attachments/assets/26277db7-2dc7-49e3-ad67-a4d312a94a4d)
 
-WebServer2 Logs
-
-![image](https://github.com/user-attachments/assets/f0cee06e-e037-4e22-bfed-57bf6775a7eb)
 
 we have successfully set up an Apache load balancer on AWS to distribute traffic between our two web servers.
 
@@ -162,7 +172,8 @@ sudo vi /etc/hosts
 <WebServer2-Private-IP-Address> Web2
 ```
 Now you can update your LB config file with those names instead of IP addresses.
-![image](https://github.com/user-attachments/assets/54d774ba-95ea-4c3b-a5b0-808a46a1cffa)
+![image](https://github.com/user-attachments/assets/547769a7-ff09-4265-91cf-7eb4d174a851)
+
 
 ```
 BalancerMember http://Web1:80 loadfactor=5 timeout=1
@@ -171,7 +182,10 @@ BalancerMember http://Web2:80 loadfactor=5 timeout=1
 ```
 sudo vi /etc/apache2/sites-available/000-default.conf
 ```
-![image](https://github.com/user-attachments/assets/76328de6-7a17-436a-8067-768b02e5e8fd)
+![image](https://github.com/user-attachments/assets/32a5a04a-e51d-4a2d-82d5-412d9b5696a9)
+
+
+#### Congratulation🎆🎇🎉🎉✨✨🧨 you have successfully deployed your first Load balancer in Apache
 
 #### Conclusion:
 
@@ -186,4 +200,4 @@ Configuration of health checks to ensure only healthy servers receive traffic.
 Demonstration of how to improve system resilience and handle increased traffic loads.
 This project serves as a valuable resource for system administrators, DevOps engineers, and developers looking to implement a load balancing solution using open-source tools. It provides a foundation for building scalable and highly available web applications, which is crucial in today's digital landscape where user expectations for performance and uptime are high.
 
-By following this project, users can gain practical experience in configuring and managing a load balancer, which is an essential skill in modern web infrastructure design and management. The knowledge gained from this project can be applied to both small-scale applications and larger, more complex systems requiring robust load balancing solutions.
+
