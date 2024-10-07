@@ -135,7 +135,7 @@ by traffic balancing method will distribute incoming load between your Web Serve
 #### Accessing the LoadBlanacer Through Public Ips.
 
 ```
-[http://13.233.152.48/login.php](http://34.203.210.189/login.php)
+(http://34.203.210.189/login.php)
 ```
 ![image](https://github.com/user-attachments/assets/b3ca95eb-4156-4576-99d4-389c34dceaff)
 
