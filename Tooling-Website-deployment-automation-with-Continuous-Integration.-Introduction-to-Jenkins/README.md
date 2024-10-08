@@ -95,8 +95,7 @@ Go to Forked Repo Tooling In own github and Inside the tooling repo need to do t
 ![image](https://github.com/user-attachments/assets/42b95cf5-5b67-4b10-bf5d-81caf5fc6c04)
 
 
-After Saving It Going to show:
-![image](https://github.com/user-attachments/assets/89aa6a21-86d8-4089-9490-21ebc8fbabd4)
+After Saving It Going to show
 
 2. Go to Jenkins web console, click "New Item" and create a "Freestyle project"
 ![image](https://github.com/user-attachments/assets/d8ca4e02-1f52-4328-9106-29418d61b0ee)
