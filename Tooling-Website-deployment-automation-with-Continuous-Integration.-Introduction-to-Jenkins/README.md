@@ -219,7 +219,6 @@ ssh: Transferred 24 file(s)
 Finished: SUCCESS
 ```
 
-![image](https://github.com/user-attachments/assets/e86631c4-cb8f-417d-83a5-779f7e7feb90)
 
 If you find an error, change security settings of  NFS Server
 
