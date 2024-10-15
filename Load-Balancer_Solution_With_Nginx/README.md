@@ -29,9 +29,10 @@ Target architecture will look like this:
 2. Update /etc/hosts file for local DNS with Web Servers' names (e.g. Web1 and Web2) and their local IP addresses
 
 ```
-sudo vi /etc/hosts
+sudo nano /etc/hosts
 ```
-![image](https://github.com/user-attachments/assets/3c260041-9380-4f85-ab08-5321586ebea3)
+![image](https://github.com/user-attachments/assets/64c05f3e-f52f-4c69-9dcf-22e5fc03c28c)
+
 
 
 3. Install and configure Nginx as a load balancer to point traffic to the resolvable DNS names of the webservers.
@@ -40,17 +41,19 @@ Update the instance and Install Nginx Install Nginx
 ```
 sudo apt update
 ```
-![image](https://github.com/user-attachments/assets/2ea0b197-d2f6-438a-acd6-e465adc76a4c)
+![image](https://github.com/user-attachments/assets/7e51133b-499f-42a2-9d6b-c58b27b0c661)
+
 
 ```
 sudo apt install nginx -y
 ```
-![image](https://github.com/user-attachments/assets/6e26d944-9a4c-4478-8091-68c9183c171e)
+![image](https://github.com/user-attachments/assets/a8ed19bc-531d-4449-b206-ad7772609e40)
+
 
 Open the default nginx configuration file
 
 ```
-sudo vi /etc/nginx/nginx.conf
+sudo nano /etc/nginx/nginx.conf
 ```
 ```
 http {
@@ -77,7 +80,8 @@ http {
 ```
 Replace your already purchased domain name in the section for domain name, save and exit
 
-![image](https://github.com/user-attachments/assets/d6baa79d-557b-404d-bfe1-d2baab29aba0)
+![image](https://github.com/user-attachments/assets/63164b98-ac07-4d5a-81ef-b853aabd434d)
+
 
 
 ```
@@ -93,9 +97,11 @@ sudo systemctl status nginx
 
 2. Assign an Elastic IP to your Nginx LB server and associate your domain name with this Elastic IP.
 
-![image](https://github.com/user-attachments/assets/f2676e63-c75f-43ad-930e-a0dc69009aa1)
+![image](https://github.com/user-attachments/assets/d36a4e0d-52aa-4208-86ba-f7b2382ec074)
 
-![image](https://github.com/user-attachments/assets/d2cd4007-ff44-4779-911b-63f4e77828f2)
+
+![image](https://github.com/user-attachments/assets/5fb15855-7976-4076-93c1-5fdbc906f839)
+
 
 We might have noticed, that every time we restart or stop/start EC2 instance - We get a new public IP address. When we want to associate we domain name - it is better to have a static IP address that does not change after reboot. Elastic IP is the solution for this problem, learn how to allocate an Elastic IP and associate it with an EC2 server on this page.
 
@@ -104,14 +110,16 @@ We might have noticed, that every time we restart or stop/start EC2 instance - W
 
 Adding records inside the Hosted Zone;
 
-![image](https://github.com/user-attachments/assets/25e62c18-3bcc-448d-97ff-8f1fbdccd737)
+![image](https://github.com/user-attachments/assets/2e85b8e2-0ccd-4e4d-a800-99ec56d51abb)
+
 
 4. Configure Nginx to recognize your new domain name.
 
 ```
-sudo vi /etc/nginx/nginx.conf
+sudo nano /etc/nginx/nginx.conf
 ```
-![image](https://github.com/user-attachments/assets/29eaca5b-d29e-47a4-84f8-32abb56b52b3)
+![image](https://github.com/user-attachments/assets/2dcec4b1-5087-4ba9-a85f-3fda1008130f)
+
 
 After do configuration insdie the nginx.conf need to check the syntax
 
@@ -126,7 +134,9 @@ sudo systemctl reload nginx
 
 Accessing the domain on web-browser;
 
-![image](https://github.com/user-attachments/assets/a8104246-13fd-454e-8c45-36e5d9b6b623)
+![image](https://github.com/user-attachments/assets/6e0bcd17-6ec6-442c-8650-73507fa13668)
+
+
 
 5. Install certbot and request for an SSL/TLS certificate.
 
@@ -136,7 +146,8 @@ Accessing the domain on web-browser;
 sudo systemctl status snapd
 ```
 
-![image](https://github.com/user-attachments/assets/2f6af894-e055-4276-9dd3-8461f80aa917)
+![image](https://github.com/user-attachments/assets/7a8157eb-ad9d-46d1-980a-7c3aa9768e1b)
+
 
 - Install certbot using snapd package manager.
 ```
@@ -153,13 +164,14 @@ sudo systemctl status snapd
 ```
 sudo certbot --nginx
 ```
-![image](https://github.com/user-attachments/assets/5cc7c397-e753-4de9-a350-4d8a435d2bbd)
 
 Visit your website to confirm SSL has been successfully installed.
-![image](https://github.com/user-attachments/assets/b76a30b2-2727-4e64-8d5b-c74d9092962b)
+![image](https://github.com/user-attachments/assets/f15d1206-2073-4c33-ac6a-dca71c3fdb6c)
+
 
 Check the certificate on Browser.
-![image](https://github.com/user-attachments/assets/42087f2e-3b64-4ab0-8c70-60ab6d36d436)
+![image](https://github.com/user-attachments/assets/606f47bd-e19d-4a45-8fbb-cdfb5b7dfc94)
+
 
 
 # Note: Letsencrypt ssl certificate is usually valid for 90 days, in order to make this continually renew itself, this can be achieved using a service known as Cron Job;
@@ -172,7 +184,9 @@ First test the renewal command
 sudo certbot renew --dry-run
 ```
 
-![image](https://github.com/user-attachments/assets/146caf36-5cf7-45ba-a1b3-8f85106a6dec)
+
+![image](https://github.com/user-attachments/assets/d1f0f1e8-44b2-4300-acd4-f41e3d92a677)
+
 
 Setting up a cron job to automate checking the server for ssl and renewal constantly.
 
@@ -181,14 +195,16 @@ Setting up a cron job to automate checking the server for ssl and renewal consta
 ```
     crontab -e
 ```
-![image](https://github.com/user-attachments/assets/340f5144-e448-4c2b-95dd-35c3c5a0b5cc)
+![image](https://github.com/user-attachments/assets/efea6030-989b-4a3a-8d59-b9c8ad870e8f)
+
 
 Add the following line.
 
 ```
     * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
 ```
-![image](https://github.com/user-attachments/assets/795efb69-c606-4bde-a72a-8e81bfd203e2)
+![image](https://github.com/user-attachments/assets/f602333b-15ff-4393-9879-f314e2787d80)
+
 
 
 We have now successfuly configured a Nginx based Load Balancer for our webservers, ensured it can be accessed by a domain name and has SSL installed for security.
