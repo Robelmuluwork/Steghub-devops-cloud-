@@ -57,7 +57,6 @@ Tip: Every time we stop/start.. Jenkins-Ansible server - you have to reconfigure
 ## Step 2 - Prepare your development environment using Visual Studio Code.
 
 1. Installing the Visual Studio Code (VSC),
-![image](https://github.com/user-attachments/assets/e2d7a049-6365-4e34-9894-5410df1e621e)
 
 2. Clone down your ansible-config-mgt repo to your Jenkins-Ansible instance.
 
@@ -101,18 +100,18 @@ mkdir playbooks
 ```
 mkdir inventory
 ```
-![image](https://github.com/user-attachments/assets/8f7f8c73-e5e2-438d-a5a8-e8b4c47ec0b4)
 
-![image](https://github.com/user-attachments/assets/4a07139e-c7f6-4d72-beb3-9b1b83c2fee1)
+![image](https://github.com/user-attachments/assets/8bdcf426-ed45-423a-b87f-667a417ae5b4)
+
 
 
 5. Within the playbooks folder, create first playbook, and name it common.yml
 
-![image](https://github.com/user-attachments/assets/dc90bdc3-2c66-48c9-97e5-b951d4656ae4)
 
 6. Within the inventory folder, create an inventory file () for each environment (Development, Staging Testing and Production) dev, staging, uat, and prod respectively. These inventory files use .ini languages style to configure Ansible hosts.
 
-![image](https://github.com/user-attachments/assets/a8447e77-cfea-4cfe-9765-6bff3f10cc55)
+![image](https://github.com/user-attachments/assets/a4d3b646-4bdb-43e5-83e5-3d1060aa4f0c)
+
 
 
 ## Step 4 - Set up an Ansible Inventory.
@@ -264,7 +263,7 @@ Due to github Webhook It will goint to start build the jenkins job if there is a
 
 Once code changes appear in main branch - Jenkins will do its job and save all the files (build artifacts) to /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/ directory on Jenkins-Ansible server.
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/faeac324-5789-42e4-a504-5d24ccce26ec)
 
 
 ## Step 7 - Run the first Ansible test.
@@ -285,23 +284,28 @@ Verify that wire shark is running in each of the servers by running
 ```
 NFS-SERVER
 
-![image](https://github.com/user-attachments/assets/91ccd4ea-5dab-4210-a30c-09102598db5e)
+![image](https://github.com/user-attachments/assets/6c78954e-6167-4bbe-9544-e4328df8ac8f)
+
 
 db
-![image](https://github.com/user-attachments/assets/4ef73ead-4983-4c99-b470-3a93f58a4dc3)
+![image](https://github.com/user-attachments/assets/9d7abcd3-64c7-4cfd-ac79-289ed244b686)
+
 
 
 loadbalancer
 
-![image](https://github.com/user-attachments/assets/7053ec07-ab3b-4cce-96cc-094974d3e86c)
+![image](https://github.com/user-attachments/assets/040bd7bd-6f2b-4005-a293-df80f30ed3f7)
+
 
 Webserver1
 
-![image](https://github.com/user-attachments/assets/fd514fea-7537-48e8-aada-2961ddafb5b8)
+![image](https://github.com/user-attachments/assets/3fc135eb-0847-4bc5-b15c-6ef895e70c21)
+
 
 Webserver2
 
-![image](https://github.com/user-attachments/assets/1ca58463-b09e-4a8e-9058-5b9bcf2df9e1)
+![Uploading image.png…]()
+
 
 
 We have Implemented
