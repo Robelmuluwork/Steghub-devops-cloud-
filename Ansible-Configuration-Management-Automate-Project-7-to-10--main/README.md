@@ -8,30 +8,35 @@
 
 2. In  GitHub account create a new repository and name it ansible-config-mgt.
 
-![image](https://github.com/user-attachments/assets/f7b22390-4c02-47ce-982a-a3e79ea11c71)
+![image](https://github.com/user-attachments/assets/9ab92ac1-f510-4c6a-9f11-a8042a745a99)
 
 3. Install Ansible.
 
 ```
 sudo apt install ansible -y
 ```
-![image](https://github.com/user-attachments/assets/c756167e-3da1-4f66-ad70-5407277e617d)
+![image](https://github.com/user-attachments/assets/b66dff6e-a9a5-43b0-8d41-69f838ac49ed)
+
 
 Check your Ansible version by running ansible --version
 
-![image](https://github.com/user-attachments/assets/687138db-70b3-4d62-813c-4bebd0a99233)
+![image](https://github.com/user-attachments/assets/85eb5fc0-511e-4798-b35a-031a8f2a6ed7)
+
 
 4. Configure Jenkins build job to archive repository content every time you change it - this will solidify Jenkins configuration skills acquired in Project 9.
 
 Create a new Freestyle project 'ansible' in Jenkins and point it to 'ansible-config-mgt' repository.
 
-![image](https://github.com/user-attachments/assets/26f49128-5952-4977-98e3-38b4256ecdf0)
+![image](https://github.com/user-attachments/assets/a92608f7-ce23-4d4a-b956-4cfa68655c37)
 
-![image](https://github.com/user-attachments/assets/d328fd38-2b62-43a0-8621-030b2c4a16e8)
+
+![image](https://github.com/user-attachments/assets/2299663e-3269-450a-a259-342fffbffaa6)
+
 
 Configure a webhook in GitHub and set the webhook to trigger ansible build.
 
-![image](https://github.com/user-attachments/assets/0e48274a-e5d8-4bbf-8b49-49d23c33e95d)
+![image](https://github.com/user-attachments/assets/47ab44d7-11c6-4d2f-a4f5-05d485d559dd)
+
 
 Configure a Post-build job to save all (**) files, like you did it in Project 9.
 ![image](https://github.com/user-attachments/assets/a5aabeab-7da0-4f48-8df5-4ad1e0a32ad6)
@@ -59,20 +64,21 @@ Tip: Every time we stop/start.. Jenkins-Ansible server - you have to reconfigure
 ```
 Clone down your ansible-config-mgt repo to your Jenkins-Ansible instance
 ```
-![image](https://github.com/user-attachments/assets/3aa9e8f3-e37b-4b8b-ae14-a889657e5ae3)
 
 ## Step 3 - Begin Ansible Development.
 
 1. In your ansible-config-mgt GitHub repository, create a new branch that will be used for development of a new feature.
 
 Created the feature branch from main branch 'feature/ansible-1' 
-![image](https://github.com/user-attachments/assets/c3793beb-871a-4b2a-9e39-1e5416a698b1)
+![image](https://github.com/user-attachments/assets/53814cf0-d755-4320-ab69-5da86dc97eed)
+
 
 To check the newly created branch locally.
 ```
 git branch -r
 ```
-![image](https://github.com/user-attachments/assets/a56b90d5-3888-4ceb-b985-ca645f475c53)
+![image](https://github.com/user-attachments/assets/1b716888-af42-4d77-b30d-48b8abe3a6d8)
+
 
 
 2. Checkout the newly created feature branch to  local machine and start building code and directory structure.
@@ -81,7 +87,8 @@ git branch -r
 git checkout feature/ansible-1
 git branch
 ````
-![image](https://github.com/user-attachments/assets/09fbc74e-efb5-46c3-aada-f77a3186a9fd)
+![image](https://github.com/user-attachments/assets/c37143eb-9bc0-4c2c-81df-f310acab4df3)
+
 
 3. Create a directory and name it playbooks - it will be used to store all playbook files.
 
@@ -96,7 +103,8 @@ mkdir inventory
 ```
 ![image](https://github.com/user-attachments/assets/8f7f8c73-e5e2-438d-a5a8-e8b4c47ec0b4)
 
-![image](https://github.com/user-attachments/assets/ee721f1b-34b7-4106-81d0-0a76d2e6509e)
+![image](https://github.com/user-attachments/assets/4a07139e-c7f6-4d72-beb3-9b1b83c2fee1)
+
 
 5. Within the playbooks folder, create first playbook, and name it common.yml
 
@@ -120,24 +128,24 @@ eval `ssh-agent -s`
 ssh-add <path-to-private-key>
 ```
 
-![image](https://github.com/user-attachments/assets/8cbb6f52-a638-4d26-95a4-d0dba6d74960)
+![image](https://github.com/user-attachments/assets/14a7913e-611c-4450-8653-6580345405bc)
+
 
 Confirm the key has been added with the command below, we should see the name of key.
 
 ```
 ssh-add -l
 ```
-![image](https://github.com/user-attachments/assets/128f149b-eca0-445c-a4a8-8dffdbedfde8)
+![image](https://github.com/user-attachments/assets/c1c3cd45-21b4-40cf-896d-6ea108a5b4bd)
+
 
 Now, ssh into  Jenkins-Ansible server using ssh-agent
 
 ```
 ssh -A ubuntu@public-ip
 ```
-![image](https://github.com/user-attachments/assets/5188f3b5-a746-49e5-af25-612e1b543e56)
+![image](https://github.com/user-attachments/assets/28dede8f-79fa-4651-a2f4-0ca17055dad0)
 
-we can able to do login through VSC.
-![image](https://github.com/user-attachments/assets/8b9c707b-ec6e-4575-8c51-ad9eeefe47e4)
 
 Update your inventory/dev.yml file with this snippet of code:
 
@@ -235,25 +243,29 @@ git add .
 git commit -m "commit message"
 git push origin feature/ansible-1
 ```
-![image](https://github.com/user-attachments/assets/2150394e-69a5-4c8b-8467-3a96a09083fc)
+![image](https://github.com/user-attachments/assets/b5d9472a-0e20-40f8-9abc-ee1014093b8e)
+
+
 
 2. Create a Pull Request (PR).
 
-![image](https://github.com/user-attachments/assets/e0fe7411-8328-4960-a7b2-62a4eb70516a)
+![image](https://github.com/user-attachments/assets/ad4d08df-20d2-448b-96a9-867453bbfa57)
 
-![image](https://github.com/user-attachments/assets/87054a36-5c82-4a9f-8177-befb827ad39d)
 wE CAN NOTE HERE THAT WHATEVER THE CONFIGURATION WE HAD DONE ON FEATURE BRANCH IN GOT UPDATE IN MAIN BRANCH WE CAN SEE ON MAIN BRANCH.
 
 3. Head back on your terminal, checkout from the feature branch into the master, and pull down the latest changes.
 
-![image](https://github.com/user-attachments/assets/f87f8833-38ca-4f68-abd1-b1f5df32cd0f)
+![image](https://github.com/user-attachments/assets/5bd884de-a80f-4ea1-950d-aa93ea6a3983)
+
 
 Due to github Webhook It will goint to start build the jenkins job if there is any changes detect on github.
-![image](https://github.com/user-attachments/assets/9ea5be4d-ae57-42cf-b273-244519c593c7)
+![image](https://github.com/user-attachments/assets/0cc9efc1-7f24-475d-b5ed-c7f9461009bc)
 
-Once code changes appear in master branch - Jenkins will do its job and save all the files (build artifacts) to /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/ directory on Jenkins-Ansible server.
 
-![image](https://github.com/user-attachments/assets/8d76dea8-1619-4b98-8c4b-f99c82017499)
+Once code changes appear in main branch - Jenkins will do its job and save all the files (build artifacts) to /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/ directory on Jenkins-Ansible server.
+
+![Uploading image.png…]()
+
 
 ## Step 7 - Run the first Ansible test.
 
