@@ -25,23 +25,23 @@ On the other hand, when include module is used, all statements are processed onl
 ## Introducing Dynamic Assignment Into Our structure:
 
 1) In your https://github.com/<your-name>/ansible-config-mgt GitHub repository start a new branch and call it dynamic-assignments.
-![image](https://github.com/user-attachments/assets/de34523f-570b-4192-9f4b-3e281a260597)
+![image](https://github.com/user-attachments/assets/da3a58a0-5623-4127-8c19-f25684bdc5c3)
+
 
 Create a new folder, name it dynamic-assignments. 
-![image](https://github.com/user-attachments/assets/c99b8b10-c3ed-4d78-a65c-397d10995e82)
+![image](https://github.com/user-attachments/assets/1793d277-995a-4b21-98b2-e1dd8b53c162)
 
 Then inside this folder, create a new file and name it env-vars.yml. 
-![image](https://github.com/user-attachments/assets/defcbe03-b57e-44d4-8949-9534fda5521f)
+![image](https://github.com/user-attachments/assets/48601e53-bef6-4636-9421-6c6771170570)
 
-We GitHub shall have following structure by now.
-![image](https://github.com/user-attachments/assets/801bd07f-b720-4e8f-b8bb-f7e0f3aab50a)
 
 Since we will be using the same Ansible to configure multiple environments, and each of these environments will have certain unique attributes, such as servername, ip-address etc., we will need a way to set values to variables per specific environment.
 
 - Create another directory and call it env-vars.
 - Inside it, create a new YAML file for each environment, that is dev.yml prod.yml staging.yml uat.yml.
 
-![image](https://github.com/user-attachments/assets/494b032b-9b72-43d9-bfad-f3369f575bdb)
+![image](https://github.com/user-attachments/assets/31ea9da6-23ad-45df-b062-51293d9deaeb)
+
 
 Now paste the instruction below into the env-vars.yml file.
 
@@ -100,7 +100,8 @@ In the same version, variants of import were also introduces, such as:
   import_playbook: ../static-assignments/webservers.yml
 
 ```
-![image](https://github.com/user-attachments/assets/aa6f231d-918d-43ad-9874-12238b14b12d)
+![image](https://github.com/user-attachments/assets/db53b35e-f130-46e9-b613-43729f28fda6)
+
 
 #### Community Roles:
 Now it is time to create a role for MySQL database - it should install the MySQL package, create a database and configure users. But why should we re-invent the wheel? There are tons of roles that have already been developed by other open source engineers out there. These roles are actually production ready, and dynamic to accomodate most of Linux flavours. With Ansible Galaxy again, we can simply download a ready to use ansible role, and keep going.
@@ -116,7 +117,8 @@ git remote add origin https://github.com/ksal1235/ansible-config-mgt.git
 git branch roles-feature
 git switch roles-feature
 ```
-![image](https://github.com/user-attachments/assets/fc7dbf29-83b3-4dde-be71-bb1393e67201)
+![image](https://github.com/user-attachments/assets/5b8cb1f9-11a8-4af2-b832-f7ace6aa5800)
+
 
 Inside roles directory create new MySQL role with ansible-galaxy install geerlingguy.mysql and rename the folder to mysql
 
@@ -181,8 +183,6 @@ git push --set-upstream origin roles-feature
 ```
 ![image](https://github.com/user-attachments/assets/bf356fa7-c126-45e4-bb56-c8d80f21b505)
 
-Merging the Code.
-![image](https://github.com/user-attachments/assets/0ab74003-f67e-4ff4-8975-959a9323f053)
 
 
 ## Creating roles for load balancer
@@ -345,7 +345,6 @@ Enable Apache (in env-vars/uat.yml)
 
 ![image](https://github.com/user-attachments/assets/edf96034-b6e6-4420-bd67-5488fefe1384)
 
-![image](https://github.com/user-attachments/assets/7a77e609-ea23-4e46-8218-bdef358a8145)
 
 ### For Nginx
 
