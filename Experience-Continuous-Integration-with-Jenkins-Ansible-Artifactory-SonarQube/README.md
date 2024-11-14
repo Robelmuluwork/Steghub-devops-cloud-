@@ -330,9 +330,11 @@ ssh -A ubuntu@34.233.123.4
 ```
 2. Install & Open Blue Ocean Jenkins Plugin
 In the Jenkins dashboard, click on **Manage Jenkins** -> **Manage plugins** and search for `Blue Ocean plugin`. Install and open Blue Ocean plugin
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/9d620074-9a78-422a-849e-476fde406990)
+![image](https://github.com/user-attachments/assets/efceed44-3232-4387-b325-c38af98ecea6)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/26cf30d1-dd71-4571-9a7f-c5e2f2ca2893)
+
+![image](https://github.com/user-attachments/assets/b6683649-821f-48b4-9750-441705e1ae3e)
+
 
 4. Create a new pipeline
 
@@ -343,7 +345,8 @@ In the Jenkins dashboard, click on **Manage Jenkins** -> **Manage plugins** and 
 
 7. Login to GitHub & Generate an Access Token
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/d4e968fb-76ef-4c49-9bc5-3da0d99d23cc)
+![image](https://github.com/user-attachments/assets/3f203cf3-c23c-4bc5-b08e-e9c0f8414a5e)
+
 
 8. Copy Access Token
 
@@ -363,7 +366,7 @@ So, click on Administration to exit the Blue Ocean console.
 ### Let us create our Jenkinsfile
 
 In Vscode, inside the Ansible project, create a new directory and name it `deploy`, create a new file `Jenkinsfile` inside the directory
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/54966adb-61a4-45b3-9a09-4f5dbc30456c)
+![image](https://github.com/user-attachments/assets/a025d466-c20e-44a8-9412-8207f7f38487)
 
 Add the code snippet below to start building the Jenkinsfile gradually. This pipeline currently has just one stage called Build and 
 the only thing we are doing is using the shell script module to echo Building Stage
@@ -384,16 +387,19 @@ pipeline {
     }
 }
 ```
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/8ece4b57-ce9a-455a-a963-1ab3111ddf92)
+![image](https://github.com/user-attachments/assets/241eaf9a-c8cb-46b5-829b-7e8dbc889f3b)
+
 
 
 **Now go back into the Ansible pipeline in Jenkins, and select configure**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/bd9b9bd7-76be-4c66-a610-ff86bb3c5871)
+![image](https://github.com/user-attachments/assets/01b9227d-4b33-431e-8cdb-a1cd57ccd7fb)
+
 
 
 **Scroll down to Build Configuration section and specify the location of the Jenkinsfile at `deploy/Jenkinsfile`**
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/824d9f98-aab9-49ad-a1a3-522bd0487db9)
+![image](https://github.com/user-attachments/assets/7831f29c-06fd-402b-927d-bb614dcd8a3f)
+
 
 **Back to the pipeline again, this time click `Build now`**
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/252b08d6-78aa-4906-8c76-b9219c2f7136)
@@ -451,7 +457,8 @@ pipeline {
 }
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/aa5602d3-735a-4483-923a-c07f76b07808)
+![image](https://github.com/user-attachments/assets/2268bf7e-1a7c-41eb-ad85-a87755f2685c)
+
 
 
 4. To make your new branch show up in Jenkins, we need to tell Jenkins to scan the repository.
@@ -461,12 +468,14 @@ pipeline {
 2. Navigate to the Ansible project and click on `Scan repository now`
 
 3. Refresh the page and both branches will start building automatically. You can go into Blue Ocean and see both branches there too.
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/984cbcc5-cde1-45c2-b539-c41f04e394fb)
+![image](https://github.com/user-attachments/assets/6bc4950d-d6aa-4e05-acf5-9dbf145e9e75)
+
 
 
 4. In Blue Ocean, you can now see how the Jenkinsfile has caused a new step in the pipeline launch build for the new branch.
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/a8826ed8-9215-4669-8cf3-ae8f3b0bda43)
+![image](https://github.com/user-attachments/assets/b9eabf75-8280-49c9-8ca8-b4fadd937348)
+
 
 
 
@@ -482,7 +491,7 @@ and test stages)
    2. Deploy 
    3. Clean up
 ```
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f321a8cb-bbd5-4591-9d1b-f82d877cc9fd)
+![image](https://github.com/user-attachments/assets/6a9b30bf-eaa8-4d40-b110-9d9180c9966d)
 
 ```
 5. Verify in Blue Ocean that all the stages are working, then merge your feature branch to the main branch
