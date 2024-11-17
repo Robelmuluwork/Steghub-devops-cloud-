@@ -403,14 +403,13 @@ pipeline {
 
 
 **Back to the pipeline again, this time click `Build now`**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/252b08d6-78aa-4906-8c76-b9219c2f7136)
+![image](https://github.com/user-attachments/assets/ef255981-155e-4585-b6be-caa638e761a3)
+
 
 
 
 This will trigger a build and you will be able to see the effect of our basic `Jenkinsfile` configuration by going through the console
 output of the build.
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/0e83effc-f60d-4484-aab9-40b5167f297c)
-
 
 To really appreciate and feel the difference of Cloud Blue UI, it is recommended to try triggering the build again from Blue Ocean
 interface.
@@ -498,7 +497,8 @@ and test stages)
 5. Verify in Blue Ocean that all the stages are working, then merge your feature branch to the main branch
 6. Eventually, your main branch should have a successful pipeline like this in blue ocean
 ```
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/36bb0f6b-f402-4a6f-a156-4cedad8fd524)
+![image](https://github.com/user-attachments/assets/f0c1e422-3262-4ccd-b52b-40aace762dd0)
+
 
 ### Running Ansible Playbook from Jenkins
 
@@ -534,9 +534,10 @@ ansible --version
 
 2. Installing Ansible plugin in Jenkins UI On the dashboard page, click on Manage Jenkins > Manage plugins > Available type in ansible and install without restart
 
-![image](assets/project14_18_ansible_plugin.jpg)
+![image](https://github.com/user-attachments/assets/4f376a69-96e2-49ef-a6fd-5ea7c2901798)
 
-![image](assets/project14_18_2.jpg)
+![image](https://github.com/user-attachments/assets/c9fe172a-bdb0-473d-b7ad-df92ad1b3b95)
+
 
 Click on Dashboard > Manage Jenkins > Global Tool Configuration > Add Ansible. Add a name and the path ansible is installed on the jenkins server
 
@@ -665,9 +666,7 @@ and run git branch command to confirm that the branch you are expecting is there
 
 **After fixing all errors  final result looks** 
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/6650edf8-54aa-4598-a45e-c032535a1b83)
-
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/a820b1cf-853b-4555-ade4-4de4f39bfc21)
+![image](https://github.com/user-attachments/assets/b11cc514-5462-401c-be64-41b1b280b3fe)
 
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/74f20f33-3634-4d13-880a-fa8a20c849fa)
 
@@ -738,9 +737,11 @@ From now on, each time you hit on execute, it will expect an input.
 > Notice that the default value loads up, but we can now specify which environment we want to deploy the configuration to. Simply type
 `sit` and `hit` Run
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/5a4550a5-5e28-4538-9e03-88bcf62a6f1f)
+![image](https://github.com/user-attachments/assets/14a61a05-193d-4e3b-ac61-1c617a692c75)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/b1ff271f-db69-426f-b4b7-3f41fdf4cd39)
+
+![image](https://github.com/user-attachments/assets/2a7178a6-d08f-49d7-89da-5b651e3edafa)
+
 
 
 4. Add another parameter. This time, introduce tagging in Ansible. You can limit the Ansible execution to a specific role or playbook
@@ -765,15 +766,18 @@ ansible-galaxy collection install jfrog.platform
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/7b3d08b7-4018-485c-a8fb-e1b88716e353)
 
 In the browser, login into artifactory with the default authentication `admin` and `password`
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/61ac8b1c-9a3d-4ff6-ba99-abe1ecadb5e8)
+![image](https://github.com/user-attachments/assets/45c8a5d1-2c99-46ec-8b62-2eb4c2a97502)
+
 
 Create a local repository `todo-dev-local`
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4807aa33-a562-4d35-8e0b-a959e5e183cb)
+![image](https://github.com/user-attachments/assets/dd521219-cf1a-495d-a80e-a1d7b4383ae7)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/8c637a75-62f5-4b59-81be-ceee3eaee510)
+![image](https://github.com/user-attachments/assets/498e3951-5200-4cc1-912d-f2fc0885f6dd)
+
 
 In Jenkins UI configure Artifactory, enter the public ip for the artifactory, the login details and test the connection  manage Jenkins> configure> Jfrog Platform url
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/ac1f40e1-12e4-43cb-98ee-6cde41694a19)
+![image](https://github.com/user-attachments/assets/d90a6041-6526-4521-b236-54c5351b852a)
+
 
 ### Phase 1 – Prepare Jenkins
 
@@ -781,7 +785,8 @@ In Jenkins UI configure Artifactory, enter the public ip for the artifactory, th
 ```
 https://github.com/StegTechHub/php-todo.git
 ```
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4446c862-f53f-4b5c-b8d4-6204c51bf8fd)
+![image](https://github.com/user-attachments/assets/3a0d0908-e9da-4c4d-a56f-c4a6bc5e8800)
+
 
 2. On you Jenkins server, install PHP, its dependencies and Composer tool (Feel free to do this manually at first, then update 
 your Ansible accordingly later)
@@ -813,16 +818,19 @@ php -v
 ```
 composer -v
 ```
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/98e98be5-ab3a-4c71-9e29-0b54b243e3f0)
+![image](https://github.com/user-attachments/assets/48638224-24fb-48cf-bc70-2f0b74fb36ef)
+
 
 
 3. Install Jenkins plugins
 
     1 .  [Plot plugin](https://plugins.jenkins.io/plot/)
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2eec50c9-e487-48c2-9640-ea2f6e8c8d4f)
+![image](https://github.com/user-attachments/assets/0b0c170d-2885-4bda-a384-02f75d43d2e2)
+
 
     2 .  [Artifactory plugin](https://www.jfrog.com/confluence/display/JFROG/Jenkins+Artifactory+Plug-in)
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/1c750e6d-951e-4377-b192-34b5acca7a43)
+![image](https://github.com/user-attachments/assets/2cbdaea4-ed78-40bb-9be4-29ea6cbd69f5)
+
 
 - We will use _plot_ plugin to display tests reports, and code coverage information.
 - The _Artifactory_ plugin will be used to easily upload code artifacts into an Artifactory server.
@@ -890,7 +898,7 @@ pipeline {
 
     stage('Checkout SCM') {
       steps {
-            git branch: 'main', url: 'https://github.com/melkamu372/php-todo.git'
+            git branch: 'main', url: 'https://github.com/robelmuluwork/php-todo.git'
       }
     }
 
@@ -915,7 +923,8 @@ pipeline {
 - Composer is used by PHP to install all the dependent libraries used by the application
 - php artisan uses the .env file to setup the required database objects
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4e7d79ed-e066-455b-a54c-3f5932902e75)
+![image](https://github.com/user-attachments/assets/08470ae6-7abe-4b1d-be25-75d8a8d257f8)
+
 
 – After successful run of this step,
 login to the database,password:`root`
@@ -924,7 +933,8 @@ login to the database,password:`root`
 mysql -u root -p
 ```
 run show tables and you will see the tables being created for you
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f43b92e6-76f9-4833-a954-1f4cae6937aa)
+![image](https://github.com/user-attachments/assets/a7c48e88-7ec7-4c43-b11d-1589297056c6)
+
 
 
 1. Update the Jenkinsfile to include Unit tests step
@@ -964,7 +974,7 @@ stage('Code Analysis') {
   }
 }
 ```
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/8a0f302f-1e75-4462-bf5e-1b196df15414)
+![image](https://github.com/user-attachments/assets/09cf184c-54c0-4b78-8e76-954309a25cef)
 
 
 2. Plot the data using _plot Jenkins_ plugin.
@@ -974,12 +984,14 @@ across builds in one or more plots. Plots for a particular job (or project) are 
 where each field has additional help information. Each plot can have one or more lines (called data series). After each build
 completes the plots’ data series latest values are pulled from the CSV file generated by **phploc**
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/21947c16-44bf-4500-a338-a1e19bc33bae)
+![image](https://github.com/user-attachments/assets/8716589c-e73e-4786-a741-3ab3103d33a0)
+
 
 You should now see a Plot menu item on the left menu. Click on it to see the charts. (The analytics may not mean much to you as 
 it is meant to be read by developers. So, you need not worry much about it – this is just to give you an idea of the real-world 
 implementation).
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/0ea78af1-6e29-4a2d-95d9-f9f528981456)
+![image](https://github.com/user-attachments/assets/96c9e6ac-465d-45ad-a061-a40ed309fab4)
+
 3. Bundle the application code for into an artifact (archived package) upload to Artifactory
 
 ```
@@ -1016,7 +1028,7 @@ stage ('Upload Artifact to Artifactory') {
 
         }
 ```
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/0c9bb61c-bc93-48b8-8e23-6e3cc35a4b28)
+![image](https://github.com/user-attachments/assets/e3641c35-5a66-40fa-97d8-a1e24bd817da)
 
 
 
@@ -1035,15 +1047,14 @@ targeting the main branch. Hence, we have ansible-project/main. Since the Ansibl
 we have included this by specifying the parameters section. The name of the parameter is env and its value is dev. Meaning, 
 deploy to the Development environment.
 **Make sure to update artifactory login details in the todo deployment configuration file in ansible-config-mgt project**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/04f5ea5a-1980-409a-9c72-1630cf1f4ea5)
+![image](https://github.com/user-attachments/assets/67be617c-44b8-481c-88a1-db8b9ae52d6a)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/04874304-1216-4ab7-83c9-1751f5556983)
 Make sure zip is install
 
 $ sudo apt install zip -y
 
+![image](https://github.com/user-attachments/assets/a60a8b75-9091-47df-8022-470a1572e330)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2612b0ec-88b1-4982-8f93-bea25fffc273)
 
 But how are we certain that the code being deployed has the quality that meets corporate and customer requirements? Even though we 
 have implemented **Unit Tests** and **Code Coverage Analysis** with **phpunit** and **phploc**, we still need to implement **Quality Gate** to ensure 
@@ -1466,15 +1477,17 @@ Define our target host(s) in an inventory file.
 2. Update Ansible Playbook:
 update  a playbook that includes tasks for installing PostgreSQL, creating the SonarQube database and user, installing SonarQube, and configuring it to use PostgreSQL.
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/7905f67b-c350-4f81-8038-2edc7b223f69)
+![image](https://github.com/user-attachments/assets/f7eb8603-e0ed-4bbe-b92d-423204a526ed)
+
 
 3. Update Role by adding role fo PostgreSQL and SonarQube :
+![image](https://github.com/user-attachments/assets/af5125a3-fda0-46fe-b398-575057434de6)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/1f637fc0-af6d-49d4-bc61-7064ef5bb93c)
 
 4. Execute the Playbook
    
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/59e83705-fa2f-42e9-9132-2f71be69e341)
+![image](https://github.com/user-attachments/assets/3cdbfef1-3ea4-42fb-b3d1-d38bfd02f9df)
+
 
 
 **Access SonarQube**  To access SonarQube using browser, type server’s IP address followed by port 9000
@@ -1484,7 +1497,8 @@ http://server_IP:9000 OR http://localhost:9000
 ```
 
 Login to SonarQube with default administrator username and password – admin
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/a9853c69-15c5-4aaa-9db5-b54d5027ad95)
+![image](https://github.com/user-attachments/assets/5fc50f05-e082-40aa-b837-9c3f04ffbfaa)
+
 
 Now, when SonarQube is up and running, it is time to setup our Quality gate in Jenkins.
 
@@ -1493,25 +1507,24 @@ Now, when SonarQube is up and running, it is time to setup our Quality gate in J
 
 - In Jenkins, install [SonarScanner plugin](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/jenkins-extension-sonarqube/)
 - In Jenkins, install SonarScanner plugin
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/1e14fe3a-5706-4f82-9938-6ec90b322ac3)
+![image](https://github.com/user-attachments/assets/e3ec1304-e253-4821-be7b-af154cb3b972)
 
 
 - Navigate to configure system in Jenkins. Add SonarQube server as shown below: Manage **Jenkins** > **Configure System**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/3f64d116-a97a-4df4-8032-c94f4f15345e)
+![image](https://github.com/user-attachments/assets/6392c975-c7c6-473c-9929-7fc5b6f9edf2)
 
 - Generate authentication token in SonarQube
   
  **User** > **My Account** > **Security** > **Generate Tokens**
- ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/ea13e42b-365d-4d05-8852-2c1cf0052d55)
+![image](https://github.com/user-attachments/assets/e7d855f4-90d6-4e14-817d-daa13b63140e)
 
 
 - Configure Quality Gate Jenkins Webhook in SonarQube – The URL should point to your Jenkins server
  http://{JENKINS_HOST}/sonarqube-webhook/
 
 **Administration** > **Configuration** > **Webhook**s > **Create**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/b0eb04ed-5390-4dcf-9636-2f97477a8fbf)
+![image](https://github.com/user-attachments/assets/266f7be6-92d9-42ce-8e52-11b32f87bfb7)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4c8b712c-06e3-4ebb-8900-f9dffc9dc02e)
 
 - Setup SonarQube scanner from Jenkins – Global Tool Configuration
 
@@ -1637,8 +1650,6 @@ and objects in the code)
 and security issues in the code.
 
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/afeef638-16c7-43c8-8af9-c9dbd98c93be)
-
 
 In the development environment, this is acceptable as developers will need to keep iterating over their code towards perfection. 
 But as a DevOps engineer working on the pipeline, we must ensure that the quality gate step causes the pipeline to fail if the 
@@ -1715,7 +1726,6 @@ If everything goes well, you should be able to see something like this:
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/c8d7e050-c026-403a-9dd4-0fb242f24c29)
 
 For Branch feature/sonar-test
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/b84fdf2a-e79e-4c16-a64e-ef1222053de9)
 
 For main branch 
 
@@ -1729,19 +1739,22 @@ Once everything is good with code quality, the pipeline will pass and proceed wi
 1. Introduce Jenkins agents/slaves – Add 2 more servers to be used as Jenkins slave. Configure Jenkins to run its pipeline jobs 
 randomly on any available slave nodes.
 Let's add 2 more servers to be used as Jenkins slave and install java in them.  
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/ac716691-59fb-405f-9a9e-4cd9311b23f6)
+![image](https://github.com/user-attachments/assets/7b319b47-c938-4fa8-ba82-f73baa862b59)
+
 
 ```
 sudo apt update
 sudo apt install default-jdk
 ```
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/7a4645c8-bb8d-4950-8772-c2e73d62d10f)
+![image](https://github.com/user-attachments/assets/a8ede080-f8f9-4b11-8996-427dedaf60a9)
+
 
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f0fe6d73-12ac-40ae-9b08-e52c4bf39bb1)
 
 2. Configure webhook between Jenkins and GitHub to automatically run the pipeline when there is a code push. Let's Configure the new nodes on Jenkins Server.
  Navigate to **Dashboard** > **Manage Jenkins** > **Nodes**, click on New node and enter a Name and click on create.
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/becc5848-9f29-4366-a155-d2c95043798c)
+![image](https://github.com/user-attachments/assets/e8f272b0-4a42-4c54-8d71-088b05b18937)
+
 
 **To connect to slave_one completed this fields and save.**
 
@@ -1749,10 +1762,10 @@ Name: slave_one
 Remote root directory: /opt/build (This can be any directory for the builds)
 Labels: slave_one 
 save 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/906af197-bb70-4a84-aeb7-120aa4a5b8f5)
+![image](https://github.com/user-attachments/assets/83f1cc56-a21c-487f-ab46-c0528f634504)
 
 To connect to slave_one, click on the slave_one and if you finsih configuration  save it you see 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/fc124386-2e2d-4901-8ab4-ac9c6553fa08)
+![image](https://github.com/user-attachments/assets/4914c8c6-fcb1-4cc5-9c01-f683b8ffe12c)
 
 Use either options. In this case, I use the first option
 > befor running please check yor public ip addres of your jenkin is same as the if not go to Dashboard> manage Jenkin > systme and update current IP
@@ -1776,9 +1789,9 @@ slave_one
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/1f21c131-8a7e-4c43-aae2-386512955e0a)
 
 slave_two
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/a735f3a4-ccfa-4692-b171-2dbe909d4490)
+![image](https://github.com/user-attachments/assets/b4fd67e9-9f47-430d-b6ff-6ab09af38130)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2dca8f1d-ff4c-43f6-92d2-a3f742de9839)
+![image](https://github.com/user-attachments/assets/516ba0c9-644c-4a8f-a1d7-82dc128e54e7)
 
 3. Deploy the application to all the environments in order to deploy to all environment we Add these stages to our existing Jenkins pipeline script 
 
@@ -1815,7 +1828,7 @@ stage ('Deploy to Dev Environment') {
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2e0e4713-1b71-4185-a55a-d7a658fc8671)
    
  **Running on slave console Output**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f19fcc0a-ce9c-443d-b598-9179eda33fa8)
+![image](https://github.com/user-attachments/assets/ef1a4978-4be3-407a-b726-19212bb49cc4)
 
 
 4. **Optional** – Experience pentesting in pentest environment by configuring [Wireshark](https://www.wireshark.org/) there and just explore for information sake only.[Watch Wireshark Tutorial here](https://youtu.be/lb1Dw0elw0Q)
