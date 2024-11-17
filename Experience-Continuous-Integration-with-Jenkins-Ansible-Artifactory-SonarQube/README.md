@@ -351,7 +351,8 @@ In the Jenkins dashboard, click on **Manage Jenkins** -> **Manage plugins** and 
 8. Copy Access Token
 
 9. Paste the token and connect
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/71a801d0-eaa9-4cf7-b08b-c4bc5bd9b32f)
+![image](https://github.com/user-attachments/assets/078f9aca-4284-47f1-8f16-51080516c68b)
+
 
 10. Create a new Pipeline
 
