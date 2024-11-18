@@ -330,7 +330,6 @@ ssh -A ubuntu@34.233.123.4
 ```
 2. Install & Open Blue Ocean Jenkins Plugin
 In the Jenkins dashboard, click on **Manage Jenkins** -> **Manage plugins** and search for `Blue Ocean plugin`. Install and open Blue Ocean plugin
-![image](https://github.com/user-attachments/assets/efceed44-3232-4387-b325-c38af98ecea6)
 
 
 ![image](https://github.com/user-attachments/assets/b6683649-821f-48b4-9750-441705e1ae3e)
