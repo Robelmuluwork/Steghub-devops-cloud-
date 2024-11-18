@@ -338,8 +338,6 @@ In the Jenkins dashboard, click on **Manage Jenkins** -> **Manage plugins** and 
 4. Create a new pipeline
 
 5. Select GitHub
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/065e0b63-107d-49b9-af19-6d8b154af6e8)
-
 6. Connect Jenkins with GitHub
 
 7. Login to GitHub & Generate an Access Token
