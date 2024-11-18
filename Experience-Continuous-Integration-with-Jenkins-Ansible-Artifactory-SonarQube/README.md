@@ -357,9 +357,6 @@ At this point you may not have a [Jenkinsfile](https://www.jenkins.io/doc/book/p
 Blue Ocean will attempt to give you some guidance to create one. But we do not need that. We will rather create one ourselves.
 So, click on Administration to exit the Blue Ocean console.
 
-**Here is our newly created pipeline. It takes the name of your GitHub repository**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/411746d4-8a9c-48d1-8d57-6574f5d94d8e)
-
 
 ### Let us create our Jenkinsfile
 
@@ -1824,9 +1821,6 @@ stage ('Deploy to Dev Environment') {
 
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2e0e4713-1b71-4185-a55a-d7a658fc8671)
    
- **Running on slave console Output**
-![image](https://github.com/user-attachments/assets/ef1a4978-4be3-407a-b726-19212bb49cc4)
-
 
 4. **Optional** – Experience pentesting in pentest environment by configuring [Wireshark](https://www.wireshark.org/) there and just explore for information sake only.[Watch Wireshark Tutorial here](https://youtu.be/lb1Dw0elw0Q)
 - Ansible Role for Wireshark:
