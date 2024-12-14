@@ -507,50 +507,54 @@ Prepare Launch Template For Webservers (One per subnet)
 3. Assign appropriate security group
 4. Configure Userdata to update yum package repository and install wordpress (Only required on the WordPress launch template)
 
-![image](https://github.com/user-attachments/assets/8ea81f0e-02cc-49c5-86dc-77fea512d6d9)
+![image](https://github.com/user-attachments/assets/b02c892d-de93-4087-a57d-0542f9f43fa0)
+
 
 
    **Instances are listed**
-![image](https://github.com/user-attachments/assets/1e189701-5fe7-4bb3-9063-fbbfafc503cc)
+![image](https://github.com/user-attachments/assets/fed356a2-e3d2-4028-a7e7-fc1b309d8ab1)
+
 
 
 
 **Creating AMI from the instances**
-![image](https://github.com/user-attachments/assets/ef91776f-d945-41ea-ae45-3d901ca6d009)
+![image](https://github.com/user-attachments/assets/06d134a7-b2ab-4ec0-9578-03bcda0369b3)
 
 
 **Creating Target Groups**
-![image](https://github.com/user-attachments/assets/552102d7-8d50-497d-886f-d05c458ae9ff)
-
+![image](https://github.com/user-attachments/assets/a41f8551-bdd4-4d91-bd87-ddd10ba3fe7c)
 
 **Create Launch Templates**
 The lunch templates requires AMIs (Amazon Machine Images) - Create AMIs from the instances and terminate them.From the created custom AMIs, create Launch templates for each of the instances
 
-![image](https://github.com/user-attachments/assets/32cf4119-9844-4253-8f50-7c9c2c1b9ed8)
+![image](https://github.com/user-attachments/assets/c2b214d9-7ba1-4a20-8a68-63ea44c5f3b9)
 
 
-![image](https://github.com/user-attachments/assets/b78cd198-6cbc-4482-aa5c-2a9322c103ef)
+![image](https://github.com/user-attachments/assets/8e437bec-9743-45f9-9e78-9f1fc9e62461)
+
+![image](https://github.com/user-attachments/assets/a7c8a7c0-7b6d-42a0-8942-215953363d58)
 
 
-![image](https://github.com/user-attachments/assets/7c060b05-8563-4f8f-b171-87b8bf293cf9)
+![image](https://github.com/user-attachments/assets/c06c978e-0db7-453a-860b-a5b18b3cff00)
 
-![image](https://github.com/user-attachments/assets/6cdde2e7-6074-437a-a999-3144b290db1b)
+![image](https://github.com/user-attachments/assets/cee4e850-7d8c-464d-87bf-f9d991865355)
 
-![image](https://github.com/user-attachments/assets/3ae68deb-7be2-4187-ba14-848b2d991879)
 
 **Configure Autoscaling For Bastion**
 
-![image](https://github.com/user-attachments/assets/e20fe6ee-55c9-446d-b55e-0cdd1e31ad7c)
+![image](https://github.com/user-attachments/assets/733dab38-91e5-4a68-a1d3-a2d33390c026)
+
 
 1. Select the right launch template
-![image](https://github.com/user-attachments/assets/1db07707-89aa-4f10-8ff2-ba26006fcdd3)
+![image](https://github.com/user-attachments/assets/5ce7db10-5b70-4888-af0a-9e4daa6f831c)
 
-![image](https://github.com/user-attachments/assets/73d372e4-c4a6-4686-a3d6-3fc6966eb117)
+
+![image](https://github.com/user-attachments/assets/473b084d-ad24-4512-b22d-6401f7648c82)
+
 
 2. Select the VPC
 3. Select both public subnets
 4. Enable Application Load Balancer for the AutoScalingGroup (ASG)
-![image](https://github.com/user-attachments/assets/ed367c15-b6a8-4220-8f72-ea962f82adf2)
 
 5. Select the target group you created before
 6. Ensure that you have health checks for both EC2 and ALB
@@ -558,14 +562,16 @@ The lunch templates requires AMIs (Amazon Machine Images) - Create AMIs from the
 8. Minimum capacity is 2
 9. Maximum capacity is 4
 10. Set scale out if CPU utilization reaches 90%
-![image](https://github.com/user-attachments/assets/d5f3e74c-b0fd-4d74-9a83-571ffe2ada2b)
+
 
 11. Ensure there is an SNS topic to send scaling notifications
-![image](https://github.com/user-attachments/assets/f9e1fa83-c2c4-49fe-ad16-49522bf64a73)
+
 
 ![image](https://github.com/user-attachments/assets/0347edb7-a950-4caa-892e-8b12e4455ab4)
 
-![image](https://github.com/user-attachments/assets/8ed9fcf2-bfa2-42bb-a7b7-fed4f30e140e)
+![image](https://github.com/user-attachments/assets/a35cc2e9-3c98-440b-acad-bf8eaec56fcd)
+
+![image](https://github.com/user-attachments/assets/3d869027-b3f9-4698-aa2c-8cf7437a71d4)
 
 ## Configure Autoscaling For Nginx repate same thing for this also
 
@@ -587,14 +593,18 @@ The lunch templates requires AMIs (Amazon Machine Images) - Create AMIs from the
 3. Use DNS to validate the domain name
 4. Tag the resource
 
-![image](assets/project15_53.JPG)
+![image](https://github.com/user-attachments/assets/0770e3df-a03f-46d8-a600-ab9ff553b53f)
 
 
-![image](assets/project15_50_updates.JPG)
 
-![image](assets/project15_51_details_certificates.JPG)
+![image](https://github.com/user-attachments/assets/cc3a1715-7fbc-4b78-a263-78ae065f0205)
 
-![image](assets/project15_52_fictious_dns.JPG)
+
+![image](https://github.com/user-attachments/assets/2b84adca-2f8d-46b7-8c2b-8cafa8e306cb)
+
+
+![image](https://github.com/user-attachments/assets/a890b832-43d3-47f5-b6f2-37e252fc3e30)
+
 
 ## CONFIGURE APPLICATION LOAD BALANCER (ALB) Application Load Balancer To Route Traffic To NGINX
 Nginx EC2 Instances will have configurations that accepts incoming traffic only from Load Balancers. No request should go directly
@@ -612,30 +622,36 @@ Open the Amazon EC2 console > Navigate to Load Balancers under the Load Balancin
 - Listeners: Add a listener for HTTPS (port 443).
 - Availability Zones: Select the appropriate VPC and Availability Zones (AZs). Ensure that the ALB is created within subnets that have internet access.
 
-![image](assets/project15_54_load%20balancers.JPG)
+![image](https://github.com/user-attachments/assets/d8e4ce7c-e283-4894-9d6c-35adfed71fcc)
 
 
-![image](assets/project15_55_exp.JPG)
+
+![image](https://github.com/user-attachments/assets/0df46d37-f466-42b2-8850-95db1f119969)
 
 
 2. Ensure that it listens on HTTPS protocol (TCP port 443)
-![image](assets/project15_56.JPG)
+![image](https://github.com/user-attachments/assets/cfe96c69-eaa6-45ee-93df-655a00ae5176)
+
 
 3. Ensure the ALB is created within the appropriate VPC | AZ | Subnets
-![image](assets/project15_57.JPG)
+![image](https://github.com/user-attachments/assets/1d65e135-d351-409b-81e5-77434bde23b7)
+
 
 
 4. Choose the Certificate from ACM
-![image](assets/project15_58_updates.JPG)
+![image](https://github.com/user-attachments/assets/b839e7f6-3b2e-4849-b232-8063d155783a)
+
 
 5. Select Security Group
 
-![image](assets/project15_59_security_group.JPG)
+![image](https://github.com/user-attachments/assets/9b1759c2-2962-44a9-a096-17d917394ce8)
+
 
 
 6. Select Nginx Instances as the target group
 
-![image](assets/project15_60_summary.JPG)
+![image](https://github.com/user-attachments/assets/3f6377ea-5b51-440a-bd1c-1376c4bc4360)
+
 
 ## Application Load Balancer To Route Traffic To Web Server
 Since the webservers are configured for auto-scaling, there is going to be a problem if servers get dynamically scalled out or in. 
@@ -646,26 +662,30 @@ the webservers are within a private subnet, and we do not want direct access to 
 
 
 1. Create an Internal ALB
-![image](assets/project15_61_create_internal_1.JPG)
+![image](https://github.com/user-attachments/assets/99fe473c-b6e0-440a-8500-4f1ae342963e)
+
 
 2. Ensure that it listens on HTTPS protocol (TCP port 443)
+![image](https://github.com/user-attachments/assets/35d07b79-cb4e-406c-85d5-5d990b4b0c2b)
 
-![image](assets/project15_63_secure.JPG)
 
 3. Ensure the ALB is created within the appropriate VPC | AZ | Subnets
-![image](assets/project15_64_with_vpc.JPG)
+![image](https://github.com/user-attachments/assets/3ee5865f-994f-4197-8f11-b43275bf480b)
+
 
 4. Choose the Certificate from ACM
 
-![image](assets/project15_65_select_certificate.JPG)
+![image](https://github.com/user-attachments/assets/8a435797-2dca-4582-9ac4-15ca5b179273)
 
 5. Select Security Group
-![image](assets/project15_66_security_group.JPG)
+![image](https://github.com/user-attachments/assets/162bc856-9ce3-458b-88c2-f46e1eb8fe45)
+
 
 6. Select webserver Instances as the target group
 7. Ensure that health check passes for the target group
 
-![image](assets/project15_67_summary.JPG)
+![image](https://github.com/user-attachments/assets/a0b6cbfe-2980-4211-9886-ff2681cbf2a5)
+
 
 
 > NOTE: This process must be repeated for both WordPress and Tooling websites.
@@ -677,22 +697,29 @@ and Webservers to store data.
 
 1. Create an EFS filesystem
 
-![image](assets/project15_70_create_EFS.JPG)
+![image](https://github.com/user-attachments/assets/6d558f42-f8b9-42bb-aeb4-d3650b9bf17d)
 
-![image](assets/project15_71_create_form.JPG)
+
+![image](https://github.com/user-attachments/assets/c66ec938-e11d-4374-aca8-b2d3d87c4089)
+
+
 
 2. Create an EFS mount target per AZ in the VPC, associate it with both subnets dedicated for data layer
 3. Associate the Security groups created earlier for data layer.
+![image](https://github.com/user-attachments/assets/6dae99bc-41b7-42b4-bc41-d9341a957ee0)
 
-![image](assets/project15_72_created_efs.JPG)
 
 4. Create an EFS access point. Create Access Points mount the applications wordpress and tooling
 
-![image](assets/project15_73_create_wordpress.JPG)
+![image](https://github.com/user-attachments/assets/b5f7bdef-3cf9-4c84-bb36-cbd5807183c5)
 
-![image](assets/project15_74_create_access_point.JPG)
 
-![image](assets/project15_75_list_access_points.JPG)
+![image](https://github.com/user-attachments/assets/de1b6a7e-4120-44f8-b09f-64efde57f834)
+
+
+![image](https://github.com/user-attachments/assets/bd00319d-692a-40b0-9426-750473bd8ed6)
+
+
 
 
 ### Setup RDS
@@ -701,30 +728,34 @@ Pre-requisite: Create a KMS key from Key Management Service (KMS) to be used to 
 Open the AWS Management Console > Navigate to the AWS Key Management Service (KMS) > Click Create Key >
 - Key Type: Choose Symmetric.
 - Key Usage: Select Encrypt and decrypt.
+![image](https://github.com/user-attachments/assets/e781713c-ceb0-45a8-95fa-16c9e549b6ab)
 
-![image](assets/project15_76_create.JPG)
 
 **Configure Key:**
 - Key Alias: Enter an alias for your key  `project15_key_RDS`
 - Key Description: Optionally add a description.
 
-![image](assets/project15_77_create_key_11.JPG)
+![image](https://github.com/user-attachments/assets/fa19db63-049e-4b4c-b175-cd028e90deb8)
+
 
 
 Define Key Administrative Permissions: Add IAM roles or users who can manage this key.
+![image](https://github.com/user-attachments/assets/96e5ee70-ed66-4570-812c-934960678682)
 
-![image](assets/project15_78_created.JPG)
 
 Define Key Usage Permissions:
-![image](assets/project15_79_create.JPG)
+![image](https://github.com/user-attachments/assets/4fd58344-3ac4-4001-9179-dddfeb09314c)
+
 
 
 Review and Create:
-![image](assets/project15_80_created.JPG)
+![image](https://github.com/user-attachments/assets/16dbca33-9790-4419-81ea-7abac13a1522)
+
 
 Review the settings and click Create Key.
 
-![image](assets/project15_81_created_rds_key.JPG)
+![image](https://github.com/user-attachments/assets/dc5fd205-2ac8-491d-ae8d-a9cb0d91ad68)
+
 
 Amazon Relational Database Service (Amazon RDS) is a managed distributed relational database service by Amazon Web Services. 
 This web service running in the cloud designed to simplify setup, operations, maintenans & scaling of relational databases. 
@@ -738,51 +769,59 @@ this AWS also has a solution – this is a more advanced concept that will be di
 To configure RDS, follow steps below:
 
 1. Create a subnet group and add 2 private subnets (data Layer)
-![image](assets/project15_82_subnet_groups.JPG)
+![image](https://github.com/user-attachments/assets/fa80e979-0ff1-4821-9e8b-ac828a65155a)
 
-![image](assets/project15_83_subnet_group.JPG)
+![image](https://github.com/user-attachments/assets/0b5fbf84-018e-4df9-a8f5-d9b18232db7b)
 
-![image](assets/project15_84_create_subnets.JPG)
+
+![image](https://github.com/user-attachments/assets/525271e4-8533-46c6-8be9-80be97ecc034)
+
 
 
 2. Create an RDS Instance for mysql 8.*.*
-![image](assets/project15_85_create_db_001.JPG)
+![image](https://github.com/user-attachments/assets/16e55d01-81c7-4b6a-94de-1a970e0e37fe)
 
-![image](assets/project15_86_create_db_002.JPG)
+![image](https://github.com/user-attachments/assets/7b120a46-18da-4293-be81-e85c1e61a2b1)
+
 
 3. To satisfy our architectural diagram, you will need to select either Dev/Test or Production Sample Template. But to minimize AWS 
 cost, you can select the Do not create a standby instance option under Availability & durability sample template (The production 
 template will enable Multi-AZ deployment)
 
 
-![image](assets/project15_87_create_db_003.JPG)
+![image](https://github.com/user-attachments/assets/b3c9db1f-94c3-47fb-866d-218a6706cbc5)
+
 
 4. Configure other settings accordingly (For test purposes, most of the default settings are good to go). In the real world, you will
 need to size the database appropriately. You will need to get some information about the usage. If it is a highly transactional 
 database that grows at 10GB weekly, you must bear that in mind while configuring the initial storage allocation, storage autoscaling, 
 and maximum storage threshold.
 
-![image](assets/project15_88_create_Db_004.JPG)
+![image](https://github.com/user-attachments/assets/c72e1a6c-a817-4a3b-9a3d-91ed1d7a3696)
 
-![image](assets/project15_89_create_db_005.JPG)
+
+![image](https://github.com/user-attachments/assets/1665802b-387e-43c3-8ff8-8e3325b4664c)
+
 
 
 5. Configure VPC and security (ensure the database is not available from the Internet)
-![image](assets/project15_90_create_connectivity.JPG)
+![image](https://github.com/user-attachments/assets/6ac9b4df-1679-4323-b92a-be7af32c9992)
+
 
 
 6. Configure backups and retention
-![image](assets/project15_91_create_db_002.JPG)
+![image](https://github.com/user-attachments/assets/4fff5e58-b588-4676-8ccb-dc2fae56b175)
 
-![image](assets/project15_92_create.JPG)
 
 7. Encrypt the database using the KMS key created earlier
-![image](assets/project15_93_create_db_006.JPG)
+S![image](https://github.com/user-attachments/assets/2c1cf718-cc9c-414f-ac8a-90fdc6db7e59)
+
 
 
 8.Enable CloudWatch monitoring and export Error and Slow Query logs (for production, also include Audit)
 
-![image](assets/project15_94_create_db_007.JPG)
+![image](https://github.com/user-attachments/assets/7dff26c8-2678-46f4-b8c5-96020a326875)
+
 
 
 ![image](assets/project15_95_created_db_008.JPG)
@@ -800,15 +839,13 @@ You need to ensure that the main domain for the WordPress website can be reached
 reached using a browser.
 
 
-![image](https://github.com/user-attachments/assets/eccf5ffc-e0bb-4f77-9099-a22cdea149a0)
+![image](https://github.com/user-attachments/assets/c9a0d39e-b4f6-413e-ad1b-f84f4bcc5c2c)
+
 
  Worpress website
 
-![image](https://github.com/user-attachments/assets/70df13b6-731d-4673-8fd9-87d3177c6b27)
+![image](https://github.com/user-attachments/assets/835a85c3-3a13-4c52-bc14-1eb47a057ef3)
 
-![image](https://github.com/user-attachments/assets/8fb52606-226a-4dcf-954c-c2673ee08e0e)
+![image](https://github.com/user-attachments/assets/5a6c2eeb-fdaf-4abe-b005-4f26de2ddfcf)
 
-### The end of Project 15 
-In this project We have just created a secured, scalable and cost-effective infrastructure to host 2 enterprise websites using various Cloud services
-from AWS. At this point, your infrastructure is ready to host real websites’ load. Since it is a pretty expensive infrastructure
-to keep it up and running, we are going to start using Infrastructure as Code tool `Terraform` to easily provision and destroy this set up.
+
