@@ -1,31 +1,4 @@
 ## AWS CLOUD SOLUTION FOR 2 COMPANY WEBSITES USING A REVERSE PROXY TECHNOLOGY
-
-**WARNING**: This infrastructure set up is NOT covered by `AWS free tier`. Therefore, ensure to DELETE ALL the resources created immediately after finishing the project. Monthly cost may be shockingly high if resources are not deleted. Also, it is strongly recommended to set up a budget and configure notifications when your spendings reach a predefined limit.
-[Watch this video](https://www.youtube.com/watch?v=fvz0cphjHjg) to learn how to configure AWS budget.
-
-
-**Let us Get Started**
-
-You have been doing great work so far – implementing different Web Solutions and getting hands on experience with many great DevOps tools. In previous projects you used basic [Infrastructure as a Service (IaaS)](https://en.wikipedia.org/wiki/Infrastructure_as_a_service) offerings from AWS such as 
-- [EC2 (Elastic Compute Cloud)](https://en.wikipedia.org/wiki/Amazon_Elastic_Compute_Cloud) as rented  Virtual Machines and
--  [EBS (Elastic Block Store)](https://en.wikipedia.org/wiki/Amazon_Elastic_Block_Store), you have also learned how to configure Key pairs and basic Security Groups.
-
-But the power of Clouds is not only in being able to rent Virtual Machines – it is much more than that. From now on, you will start 
-gradually study different Cloud concepts and tools on example of AWS, but do not be worried, your knowledge will not be limited to only AWS specific concepts – overall principles are common across most of the major Cloud Providers (e.g., Microsoft Azure and Google Cloud Platform).
-
-> NOTE: The next few projects will be implemented manually. Before you begin to automate infrastructure in the cloud, it is very important that you can build the solution manually. Otherwise, programming your automation may become frustrating very quickly.
-
-You will build a secure infrastructure inside AWS VPC (Virtual Private Cloud) network for a fictitious company (Choose an interesting 
-name for it) named `tooling` that uses [WordPress CMS](https://wordpress.com/) for its main business website, and a Tooling Website
-(https://github.com/melkamu372/tooling) for their DevOps team. As part of the company’s desire for improved security and performance, a decision has been made to use a reverse proxy technology from NGINX to achieve this.
-
-Cost, Security, and Scalability are the major requirements for this project. Hence, implementing the architecture designed below,
-ensure that infrastructure for both websites, WordPress and Tooling, is resilient to Web Server’s failures, can accomodate to increased traffic and, at the same time, has reasonable cost.
-  
-  
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/05e5cce5-d845-4bc7-85ad-e169dd417ea1)
-
-
   
 ## Starting Off Your AWS Cloud Project
   
@@ -36,7 +9,8 @@ There are few requirements that must be met before you begin:
 - Create an AWS Master account. (Also known as Root Account) 
 - Within the Root account, create a sub-account and name it DevOps. (You will need another email address to complete this)
 1.1.  In the AWS Management Console, navigate to AWS Organizations.
-![image](assets/project15-01-create_oragnization.JPG)
+![Screenshot 2024-12-14 203720](https://github.com/user-attachments/assets/3b1d5f4e-ef5f-45f0-a37b-b10abe3f9acd)
+
 
 1.2. If you haven't already created an organization, click "Create an organization" and select "Enable All Features".
 1.3. Click "Add account".
@@ -45,35 +19,40 @@ There are few requirements that must be met before you begin:
  - Account name: DevOps
  - Email address: Provide a new email address (different from the root account).
 1.6. Click "Create". AWS will send a verification email to the provided email address.
-![image](assets/project15-02-create-devops-account.JPG)
+![image](https://github.com/user-attachments/assets/768ac497-35a3-4536-bba6-5109bc8d5b0a)
+
 
 1.7. Verify the email address by following the instructions in the email sent by AWS.
-![image](assets/project15_03_verify.JPG)
+![image](https://github.com/user-attachments/assets/52b4dfc2-6adb-43b2-b8e1-244806653619)
+
+
 
 - Within the Root account, create an AWS Organization Unit (OU). Name it Dev. (We will launch Dev resources in there)
   
   **Create an Organizational Unit (OU) Named Dev**  > **In the AWS Organizations dashboard, click on "Organize accounts"** > **Click on "Create organizational unit"** > **Enter Dev as the name for the new OU** > **Click "Create organizational unit"**
-![image](assets/project15_04_create_dev_ou.JPG)
+![image](https://github.com/user-attachments/assets/bec6149b-3573-428c-8274-9ae5842e1248)
+
 
 - Move the DevOps account into the Dev OU.
-![image](assets/project15_05_initial.JPG)
+![image](https://github.com/user-attachments/assets/be883c0c-6735-4d5d-82a6-17c09d815113)
+
 
 - Login to the newly created AWS account using the new email address.
    - Go to the AWS Management Console login page.
    - Enter the email address used for the DevOps account and click Next.
-   - Click on "Forgot your password?" if you don't have the initial password.
-   - Follow the instructions to reset the password and Log in with the new password
 
 
-![image](assets/project15_06_after_login.JPG)
+![image](https://github.com/user-attachments/assets/51088d31-a9ee-4679-9c49-d0dd402faa5d)
 
 
-2. Create a free domain name for your fictitious company. I used [cloudns](https://www.cloudns.net/)
 
-![image](assets/project15_07_free_domain.JPG)
+2. Create a free domain name for your fictitious company.you can use [cloudns](https://www.cloudns.net/) for free
+
+![image](https://github.com/user-attachments/assets/beab4332-6bea-4eaf-9e15-40057f4c1b0d)
 
 
-3. Create a hosted zone in AWS, and map it to your free domain. [Watch how to do that here](https://youtu.be/IjcHp94Hq8A)
+
+3. Create a hosted zone in AWS, and map it to your free domain.
 
  In the search bar, type `Route 53` and select `Route 53` from the results. >  In the Route 53 dashboard, click on `Hosted zones` in the left-hand navigation pane >
  Click `Create hosted zone`
@@ -84,29 +63,32 @@ Fill in the following details:
    -  VPC: Leave this blank for a public hosted zone.
    -  Click Create hosted zone
 
-![image](assets/project15_08_create_dns_zone.jpg)
+![image](https://github.com/user-attachments/assets/a7ac479f-be63-4745-9b44-5b04131fb2a0)
 
-![image](assets/project15_09_dns_lst.jpg)
 
  Go to the domain name provider and edit the nameservers
 
 Transfer the (4 server address) in the hostname zone in the (NS column) to the domain provider (nameservers).
 
-![image](assets/project15_10_update_name_servers.jpg)
+![image](https://github.com/user-attachments/assets/a0fd72ec-ff2a-446c-9c1c-37e4cb699184)
+
 
 The next step is to get a certificate from AWS Certificate Manager. The reason we are creating a certificate first is because when creating `ALB` we need to select a certificate.
 
 - Click on request a Cert > Request public cert > Next
 
-![image](assets/project15_11_certificate_manager.JPG)
+![image](https://github.com/user-attachments/assets/3dbe434b-857e-46d2-8f8d-71007a1c842a)
 
-![image](assets/project15_12_request_cirtificate.JPG)
+![image](https://github.com/user-attachments/assets/c6674e36-2dba-44ed-8a6e-efa25d6cf191)
+
 
 
 In the domain name, we are going to use a wild card i.e(*.). should in case we want to have another `name` or `subdomain`, the `WILDCARD` will make sure that any name before the domain name is attached to the `certificate`. 
-e.g gashaw.fictitiouscompany.ip-ddns.com
+e.g robelM.fictitiouscompany.ip-ddns.com
 
-![image](assets/project15_13_public_certificates.JPG)
+![image](https://github.com/user-attachments/assets/363a1d70-1e8d-4895-bab0-ec7660771162)
+
+
 
 NOTE: Because we are using DNS verification is going to automatically write to the Rout53 to confirm
 
@@ -129,11 +111,14 @@ Always make reference to the architectural diagram and ensure that your configur
 1. Create a [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
 
 
-![image](assets/project15_15_create_vpc.JPG)
+![image](https://github.com/user-attachments/assets/7dab27f9-427b-4ed7-ae12-04d2ef7ba68b)
+
 
 **Enable DNS hosting**
 
-![image](assets/project15_16_edit_vpc_settings.JPG)
+![image](https://github.com/user-attachments/assets/b414d56c-1dc8-48c2-893c-76f3c05b270c)
+
+
 
 
 2. Create subnets as shown in the architecture  On the left panel menu of the VPC UI, click on Subnet > Create Subnet.
@@ -147,16 +132,19 @@ VPC: 10.0.0.0/16
 - Private Subnet 3: 10.0.5.0/24  in Zone A
 - Private Subnet 4: 10.0.6.0/24   in Zone B
 
-![image](assets/project15_17_create_subnet_1.JPG)
+![image](https://github.com/user-attachments/assets/ececae8f-d81c-4601-9a28-e433eef35eea)
 
-  ![image](assets/project15_18_created_subnets.JPG)
+
+![image](https://github.com/user-attachments/assets/c2f9767e-f83e-43af-b957-9a24671f2082)
+
 
 
 3. Create a route table and associate it with public subnets
 
 **In the left-hand navigation pane, click on Route Tables** >  **Create route table button**
 
-![images](assets/project15_19_create_route_tables.JPG)
+![image](https://github.com/user-attachments/assets/e8206092-f099-4ccc-842c-6de34ad0e1c5)
+
  
  **Enter the following details:**
 
@@ -164,7 +152,8 @@ VPC: 10.0.0.0/16
    - VPC: Select the VPC you created earlier.
    - Click Create route table.
 
-![image](assets/project15_20_create-route-table.JPG)
+![image](https://github.com/user-attachments/assets/32ffe511-9e00-42a9-bfb0-9bd008c7b444)
+
 
 
 **Associate Route Table with Public Subnets**
@@ -174,30 +163,24 @@ VPC: 10.0.0.0/16
 - In the Select subnets section, check the boxes for Public Subnet 1 and Public Subnet 2.
 - Click Save associations.
 
-![image](assets/project15_21_edit_public_associations.JPG)
-
-
 4. Create a Private route table and associate it with private subnets
 
-![images](assets/project15_22_create_private_route_tables.JPG)
+![image](https://github.com/user-attachments/assets/40b76fd2-3cd1-4615-99c4-9a40b02d9bae)
 
-![image](assets/project15_23_create_route_table_2.JPG)
-
-
-**Route Tables**
-![image](assets/project15_24_route_tables.JPG)
 
 
 5. Create an [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
 
 Click on Internet Gateways on the left-hand side >  Create internet gateway > Enter a name for your internet gateway > Create internet gateway
 
-![image](assets/project15_25_create_internet_gateways.JPG)
+![image](https://github.com/user-attachments/assets/961f9b79-a182-4748-b09e-f90cf0ac930a)
+
 
 
 **Attach Internet Gateway to VPC**: Select the internet gateway you just created > Click the Actions dropdown, then select Attach to VPC >Select the VPC you created earlier >Click Attach internet gateway.
 
-![image](assets/project15_26_atach_to_vpc.JPG)
+![image](https://github.com/user-attachments/assets/b39258a6-3127-4aee-8070-bbdfd97b6d30)
+
 
 6. Edit a route in public route table, and associate it with the Internet Gateway. (This is what allows a public subnet to be accisble 
 from the Internet)
@@ -205,16 +188,19 @@ from the Internet)
 Go back to Route Tables and select the Public Route Table  >  Click on the Routes tab > Click Edit routes.
 Click Add route > Destination: 0.0.0.0/0 > Target: Select the internet gateway you created > Click Save routes
 
-![image](assets/project15_27_associate_routes.JPG)
+![image](https://github.com/user-attachments/assets/19c019ff-5ebf-42ba-97c1-d851a6739ce7)
+
 
 
 7. Create 3 [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) one for `Nat getway` and the other `2 will be used by Bastion hosts`
 
 Create Elastic IP to configured with the NAT gateway. The NAT gateway enables connection from the public subnet to private subnet and it needs a static ip to make this happen. VPC > Elastic IP addresses > Allocate Elastic IP address - add a name tag and click on allocate
 
-![image](assets/project15_28_addingelastic%20ips.JPG)
+![image](https://github.com/user-attachments/assets/8225ddf6-668e-441c-b77f-5bb752084f26)
 
-![image](assets/project15_29_elastic_ips_list.JPG)
+
+![image](https://github.com/user-attachments/assets/ea6a7e13-c924-4e9d-bdb6-47739e13465b)
+
 
 8. Create a Nat Gateway and assign one of the Elastic IPs the other 2 will be used by [Bastion hosts](https://aws.amazon.com/solutions/implementations/linux-bastion/))
 
@@ -224,11 +210,13 @@ Select a Public Subnet
 Connection Type: Public
 Allocate Elastic IP
 
-![image](assets/project15_30_create_nat-gateway.JPG)
+![image](https://github.com/user-attachments/assets/550e96a8-2f04-4652-a0c4-5a72be736bea)
+
 
 Update the Private route table - add allow anywhere ip and associate it the NAT gateway
 
-![image](assets/project15_31_private_nat.JPG)
+![image](https://github.com/user-attachments/assets/3dd9e713-afec-4aba-aa0a-ab9721b354e4)
+
 
 9. Create a Security Group for:
 
@@ -248,11 +236,12 @@ curl www.canhazip.com
 System (EFS) must be carefully desinged – only webservers should be able to connect to RDS, while Nginx and Webservers will have 
 access to EFS Mountpoint.
 
-![image](assets/project15_32_create_security_group_apl.JPG)
+![image](https://github.com/user-attachments/assets/5d9e3cd3-4732-41d2-8e5f-7d0fe9109d79)
+
 
 Create others like above
 
-![image](assets/project15_33_security_groups.JPG)
+![image](https://github.com/user-attachments/assets/51851e0e-808d-45a1-b7ab-47ce62e3b001)
 
 
 **Proceed With Compute Resources**
@@ -338,7 +327,8 @@ Prepare Launch Template For Nginx (One Per Subnet)
 3. Assign appropriate security group
 4. Configure Userdata to update yum package repository and install nginx
 
-![images](assets/project15_35_create_templates_nginx.jpg)
+![image](https://github.com/user-attachments/assets/8903ac25-e112-4a02-bb6f-ede2975ebbaa)
+
 
 ## Configure Target Groups
 
@@ -348,7 +338,7 @@ Prepare Launch Template For Nginx (One Per Subnet)
 4. Register Nginx Instances as targets
 5. Ensure that health check passes for the target group
 
-![images](assets/project15_36_create_target_groups.jpg)
+![image](https://github.com/user-attachments/assets/f2200835-e829-4d69-8a29-6e47a47bb7e3)
 
 
 ## CONFIGURE AUTOSCALING FOR NGINX
@@ -365,9 +355,10 @@ Prepare Launch Template For Nginx (One Per Subnet)
 10. Set scale out if CPU utilization reaches 90%
 11. Ensure there is an SNS topic to send scaling notifications
 
-![image](assets/project15_38_create_autoscaling_nginx.jpg)
+![image](https://github.com/user-attachments/assets/4277789f-e3b4-49b6-ae40-a9aef8dfbb66)
 
-![image](assets/project15_39_autoscaling.jpg)
+![image](https://github.com/user-attachments/assets/b3892931-9943-4419-a441-195287302b78)
+
 
 ## Set Up Compute Resources for Bastion
 Provision the EC2 Instances for Bastion
@@ -402,7 +393,8 @@ systemctl enable chronyd
 
  Here is sample for the one available zone
 
-![images](assets/project15_41_create_bastion_images.jpg)
+![image](https://github.com/user-attachments/assets/fa6f5cc7-57d2-4145-a4fe-4d9046766f49)
+
 
 Prepare Launch Template For Bastion (One per subnet)
 
@@ -413,7 +405,8 @@ Prepare Launch Template For Bastion (One per subnet)
  
  Here is sample for the one available zone
 
-![images](assets/project15_40_create.jpg)
+![image](https://github.com/user-attachments/assets/239da23d-6927-40c4-b787-fc8caaefe6d8)
+
 
 ## Configure Target Groups
 
@@ -422,7 +415,8 @@ Prepare Launch Template For Bastion (One per subnet)
 3. Register Bastion Instances as targets
 4. Ensure that health check passes for the target group
 
-![images](assets/project15_42_target_bastion.jpg)
+![image](https://github.com/user-attachments/assets/eb0eabcc-f756-41fa-a2d5-1b56c8a3e82e)
+
 
 ## CONFIGURE AUTOSCALING FOR BASTION
 
@@ -438,7 +432,8 @@ Prepare Launch Template For Bastion (One per subnet)
 10. Set scale out if CPU utilization reaches 90%
 11. Ensure there is an SNS topic to send scaling notifications
 
-![images](assets/project15_43_autoscaling_group.jpg)
+![image](https://github.com/user-attachments/assets/fed1aba3-f99a-4f9a-8ab1-c8acfb90a999)
+
 
 ## Set Up Compute Resources for Webservers
 
@@ -512,25 +507,30 @@ Prepare Launch Template For Webservers (One per subnet)
 3. Assign appropriate security group
 4. Configure Userdata to update yum package repository and install wordpress (Only required on the WordPress launch template)
 
-![images](assets/project15_44_web_server_images.JPG)
+![image](https://github.com/user-attachments/assets/8ea81f0e-02cc-49c5-86dc-77fea512d6d9)
+
 
    **Instances are listed**
-![image](assets/project15_45_instances_listed.JPG)
+![image](https://github.com/user-attachments/assets/1e189701-5fe7-4bb3-9063-fbbfafc503cc)
+
+
 
 **Creating AMI from the instances**
-![image](assets/project15_46_created_ami.JPG)
+![image](https://github.com/user-attachments/assets/ef91776f-d945-41ea-ae45-3d901ca6d009)
+
 
 **Creating Target Groups**
-![image](assets/project15_47_target_groups.JPG)
+![image](https://github.com/user-attachments/assets/552102d7-8d50-497d-886f-d05c458ae9ff)
 
 
 **Create Launch Templates**
 The lunch templates requires AMIs (Amazon Machine Images) - Create AMIs from the instances and terminate them.From the created custom AMIs, create Launch templates for each of the instances
 
+![image](https://github.com/user-attachments/assets/32cf4119-9844-4253-8f50-7c9c2c1b9ed8)
 
-![image](https://github.com/user-attachments/assets/b2eefc6b-f8f1-486e-9264-fb6626802256)
 
-![image](https://github.com/user-attachments/assets/84b07bc8-1013-4030-9113-6ec754c02c80)
+![image](https://github.com/user-attachments/assets/b78cd198-6cbc-4482-aa5c-2a9322c103ef)
+
 
 ![image](https://github.com/user-attachments/assets/7c060b05-8563-4f8f-b171-87b8bf293cf9)
 
