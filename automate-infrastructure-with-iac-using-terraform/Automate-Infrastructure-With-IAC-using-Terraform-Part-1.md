@@ -10,9 +10,15 @@ AdministratorAccess permissions.
 
 ![image](https://github.com/user-attachments/assets/a7b1a711-c3e3-4b5d-9c2e-fae910aa4085)
 
+-after creating the IAM user nacigate to the terraform user -> security creditials -> Access keys ->create access key 
+![image](https://github.com/user-attachments/assets/29063160-1c97-469c-a5c7-a329bfa1e24e)
+use case the command line interface
+![image](https://github.com/user-attachments/assets/7e2f1ccd-5730-4c6c-92bf-0fd9c4e9da22)
+give a discription and create it 
 
 - Copy the secret access key and access key ID. Save them in a notepad temporarily.
-![image](assets/pr16-03-create-access-keys.JPG)
+- ![image](https://github.com/user-attachments/assets/a5f8841c-eca5-474c-9a0e-7fbc4e2b71ac)
+
 
 - Configure programmatic access from your workstation to connect to AWS using the access keys copied above and a 
 [Python SDK (boto3)](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html).
