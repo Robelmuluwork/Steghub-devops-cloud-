@@ -1,19 +1,15 @@
 # AUTOMATE INFRASTRUCTURE WITH IAC USING TERRAFORM PART 1
 
-After you have built AWS infrastructure for 2 websites manually, it is time to automate the process using Terraform.
-
-Let us start building the same set up with the power of Infrastructure as Code (IaC)
-
-![image](assets/352381474-76245f5b-f77a-4686-8830-c52b178aa937.png)
-
 
 ## Prerequisites before you begin writing Terraform code
 - You must have completed Terraform course from the Learning dashboard
 - Create an IAM user, name it `terraform` (ensure that the user has only programatic access to your AWS account) and grant this user 
 AdministratorAccess permissions.
-![image](assets/pr16-01-create-teraform-user.JPG)
+![image](https://github.com/user-attachments/assets/db06938a-20bb-46aa-8825-006ae9c9f303)
 
-![image](assets/pr16-02-give-administrator-access.JPG)
+
+![image](https://github.com/user-attachments/assets/a7b1a711-c3e3-4b5d-9c2e-fae910aa4085)
+
 
 - Copy the secret access key and access key ID. Save them in a notepad temporarily.
 ![image](assets/pr16-03-create-access-keys.JPG)
