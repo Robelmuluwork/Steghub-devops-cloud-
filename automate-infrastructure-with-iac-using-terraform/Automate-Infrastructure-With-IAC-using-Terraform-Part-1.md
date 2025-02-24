@@ -27,30 +27,36 @@ give a discription and create it
 ```
 python --version
 ```
-![image](assets/pr16-07-see-python-version.JPG)
+![image](https://github.com/user-attachments/assets/fd0149c0-85fe-4a34-9b1c-322483b8319b)
+
 
 If you are on Windows, use gitbash, if you are on a Mac, you can simply open a terminal. Read here to configure the Python SDK properly.
 ```
 aws --version
 ```
-![image](assets/pr16-08-aws-version.JPG)
+![image](https://github.com/user-attachments/assets/1f1103df-d8db-43c7-b3c0-1ec92dde5688)
+
 
 For easier authentication configuration – use AWS CLI with aws configure command.
 
 Create an S3 bucket to store Terraform state file. You can name it something like `yourname`-dev-terraform-bucket 
 (Note: S3 bucket names must be unique unique within a region partition, you can read about S3 bucken naming  ). 
 We will use this bucket from Project-17 onwards.
-for me `gashaw-dev-terraform-bucket`
-![image](assets/pr16-04-create_buckets.JPG)
+for me `robel-dev-terraform-bucket`
+![image](https://github.com/user-attachments/assets/9a9c3859-2823-4fe2-93b1-cd05d919422f)
+![image](https://github.com/user-attachments/assets/7553b431-954c-4b65-b28f-a7bfc5bf7bb8)
 
-![image](assets/pr16-05-createbucket-02.JPG)
+configure your aws CLI
+```aws confugure```
+![image](https://github.com/user-attachments/assets/7d14eee7-1b24-4ea5-9265-fcdaa5906e8b)
+enter Accesskey and secretKey
 
 
  **Verfiy this in  AWS CLI**
  ```
 aws s3 ls
 ```
-![image](assets/pr16-09-see-bucket-list.JPG)
+![image](https://github.com/user-attachments/assets/2c83c556-eede-4f2d-bb07-1e052905e0d7)
 
 
 
@@ -58,23 +64,28 @@ Install Boto3 (Boto3 is a AWS SDK for Python) in your local machine
 ```
 pip install boto3
 ```
-![images](assets/pr16-10-install-python-sdk.JPG)
+![image](https://github.com/user-attachments/assets/b49fbdd8-d9ba-4e26-827a-863472d8be84)
+
 When you have configured authentication and installed boto3, make sure you can programmatically access your AWS account by running 
 following commands in >python:
-  
+  ![image](https://github.com/user-attachments/assets/84302fe4-e54d-4bff-b01b-1c4dbd378a34)
+
 ```
 import boto3
 s3 = boto3.resource('s3')
 for bucket in s3.buckets.all():
     print(bucket.name)
 ```
-Save the above code to a file (e.g., list_buckets.py) or run it directly in a Python interpreter
+Save the above code to a file list_buckets.py or run it directly in a Python interpreter
 ```
- python gashaw.py
+ python list_bucket.py
 ```
-  
-You shall see your previously created S3 bucket name – gashaw-dev-terraform-bucket
-![image](assets/pr16-06-retrieve-buckets.JPG)
+ ![image](https://github.com/user-attachments/assets/506a4c9d-8f78-458d-85f5-04e852ab6f41)
+
+
+You shall see your previously created S3 bucket name – robel-dev-terraform-bucket
+![image](https://github.com/user-attachments/assets/6b085af8-2b23-4074-aaa0-f4b240f3ad71)
+
 
 ## The secrets of writing quality Terraform code
 The secret recipe of a successful Terraform projects consists of:
@@ -129,7 +140,8 @@ Open your Visual Studio Code and:
 
 Your setup should look like this.
 
-![image](assets/PR16-11-CREATE-PBL.JPG)
+![image](https://github.com/user-attachments/assets/45088b59-a949-4827-b23b-d381e8d4914c)
+
 
 ## Provider and VPC resource section
 Set up Terraform CLI as per this [instruction](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli).
@@ -169,7 +181,8 @@ provisioners. At this stage, we only have provider in our main.tf file. So, Terr
 
 > terraform init
 ```
-![image](assets/pr16-15-init.jpg)
+![image](https://github.com/user-attachments/assets/a70576f9-313f-4775-8779-272c1633b8d8)
+
 
 
 **Observations:**
@@ -184,14 +197,16 @@ Let's verify what terraform intends to create
 ```
 terraform plan
 ```
-![image](assets/pr16-16-plan-plan.jpg)
+![image](https://github.com/user-attachments/assets/16e22983-de2b-4eea-ba8d-b917a03ee797)
+
 
 - Then, if you are happy with changes planned, execute
 
 ```
  terraform apply
 ```
-![images](assets/pr16-17-terraform-apply.jpg)
+![image](https://github.com/user-attachments/assets/c9149e6a-340e-4700-a4cd-385554efcf34)
+
 
 **Observations:**
 
@@ -261,15 +276,19 @@ Run terraform plan to check the intend infrusture and terraform apply to create 
 ```
 terraform plan
 ```
-![images](assets/pr16-18_create-subnets.jpg)
+![image](https://github.com/user-attachments/assets/2fa9e090-9aa6-4588-88bf-99b4c21821c6)
+
 ```
 terraform apply
 ```
-![image](assets/pr16-20-apply-subnets.jpg)
+![image](https://github.com/user-attachments/assets/da16ca26-45c5-40c8-9e55-58dcdf907ec0)
 
-![image](assets/pr16-22-vpc.jpg)
 
-![image](assets/pr16-21-subnets%20list.jpg)
+![image](https://github.com/user-attachments/assets/9c241c15-3a5b-4389-8694-f234d75233e5)
+
+
+![image](https://github.com/user-attachments/assets/3e956b71-ff6f-4d67-8e2c-679516a42354)
+
 
 
 **Observations:**
@@ -285,7 +304,8 @@ First, destroy the current infrastructure. Since we are still in development, th
 ```
 terraform destroy
 ```
-![image](assets/pr16-23-destroy.jpg)
+![image](https://github.com/user-attachments/assets/2296568e-5759-4b87-90fd-907da41a950b)
+
 
 Now let us improve our code by refactoring it.
 
@@ -570,9 +590,9 @@ resource "aws_subnet" "public" {
 
 ```
 
-![image](assets/pr16-25-creates.jpg)
+![image](https://github.com/user-attachments/assets/9fbfc19b-c07e-41ea-9299-1dac948486c4)
 
-![image](assets/pr16-24-create.jpg)
+![image](https://github.com/user-attachments/assets/a2689a18-632b-4397-9cec-002757a0bd5c)
 
 
 Note: You should try changing the value of preferred_number_of_public_subnets variable to null and notice how many subnets get 
@@ -632,7 +652,7 @@ resource "aws_subnet" "public" {
   availability_zone       = data.aws_availability_zones.available.names[count.index]
 }
 ```
-![image](assets/pr16-26-main-tf.jpg)
+![image](https://github.com/user-attachments/assets/1de6182e-d60b-4dab-b151-7be711000091)
 
 
 
@@ -667,7 +687,8 @@ variable "enable_classiclink_dns_support" {
       default = null
 }
 ```
-![image](assets/pr16-27-values.jpg)
+![image](https://github.com/user-attachments/assets/9de93977-fa23-4647-86c6-1bbbfe2e8b00)
+
 
 
 **`terraform.tfvars`**
@@ -687,7 +708,8 @@ enable_classiclink_dns_support = "false"
 
 preferred_number_of_public_subnets = 2
 ```
-![image](assets/pr16-28-variables-tft.jpg)
+![image](https://github.com/user-attachments/assets/8fc37810-bc3e-40d9-8ed1-e5df231d2395)
+
 
 
 You should also have this file structure in the PBL folder.
@@ -700,27 +722,32 @@ You should also have this file structure in the PBL folder.
     ├── terraform.tfvars
     └── variables.tf
 ```
-![image](assets/pr16-29-file-structure.jpg)
+![image](https://github.com/user-attachments/assets/39f257b4-57da-4315-b14d-44658f0a48d4)
+
 
 
 Run terraform plan and ensure everything works
 `Plan`
-![image](assets/pr16-30-plan.jpg)
+![image](https://github.com/user-attachments/assets/6441d8ee-1eb4-4b5b-8634-dc77f5787a1c)
+
 
 `apply`
 
-![image](assets/pr16-31-create-files.jpg)
+![image](https://github.com/user-attachments/assets/fbee7333-39ad-4f8d-95e2-27545dd66cc1)
 
 `Verify VPC in AWS management Console`
-![image](assets/pr16-32-see-vpc.jpg)
+![image](https://github.com/user-attachments/assets/47221517-a960-4684-911b-a054b9294737)
 
-![image](assets/pr16-33-see-subnets.jpg)
+
+![image](https://github.com/user-attachments/assets/da80b493-ffcc-4921-8672-e56e910d0449)
+
 
 ```
 # Delete the infastructure
 terraform destroy
 ```
-![image](assets/pr16-34-delete.jpg)
+![image](https://github.com/user-attachments/assets/e9d34e79-e15e-4405-a734-2e65b4913795)
+
 
 ### The End of Project 16 
 In this project we have learned how to create and delete AWS Network Infrastructure programmatically with Terraform!
