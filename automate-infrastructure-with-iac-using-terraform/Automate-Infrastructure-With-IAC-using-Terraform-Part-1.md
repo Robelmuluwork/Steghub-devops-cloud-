@@ -87,48 +87,6 @@ You shall see your previously created S3 bucket name – robel-dev-terraform-buc
 ![image](https://github.com/user-attachments/assets/6b085af8-2b23-4074-aaa0-f4b240f3ad71)
 
 
-## The secrets of writing quality Terraform code
-The secret recipe of a successful Terraform projects consists of:
-
-- Your understanding of your goal (desired AWS infrastructure end state)
-- Your knowledge of the IaC technology used (in this case – Terraform)
-- Your ability to effectively use up to date Terraform documentation [here](https://developer.hashicorp.com/terraform/language)
-
-As you go along completing this project, you will get familiar with 
-[Terraform-specific terminology](https://developer.hashicorp.com/terraform/docs/glossary), such as:
-
-
-- Attribute
-- Resource
-- Interpolations
-- Argument
-- Providers
-- Provisioners
-- Input Variables
-- Output Variables
-- Module
-- Data Source
-- Local Values
-- Backend
-
-  
-Make sure you understand them and know when to use each of them.
-
-Another concept you must know is data type. This is a general programing concept, it refers to how data represented in a programming 
-language and defines how a compiler or interpreter can use the data. Common data types are:
-
-- Integer
-- Float
-- String
-- Boolean, etc.
-
-
-## Best practices
-
-- Ensure that every resource is tagged using multiple key-value pairs. You will see this in action as we go along.
-- Try to write reusable code, avoid hard coding values wherever possible. (For learning purpose, we will start by hard coding,
-but gradually refactor our work to follow best practices).
-
 
 # VPC | SUBNETS | SECURITY GROUPS
 
